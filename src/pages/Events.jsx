@@ -1,0 +1,192 @@
+import { Link } from 'react-router-dom'
+import AnimatedReveal from '../components/AnimatedReveal'
+
+// Gallery Images
+import corporateImg from '../assets/events/corporate.png'
+import musicImg from '../assets/events/music.png'
+import awardImg from '../assets/events/award.png'
+import launchImg from '../assets/events/launch.png'
+
+const EVENTS = [
+  { icon:'🎪', title:'Event Planning & Coordination',
+    desc:'Full end-to-end event management — venue sourcing, vendor coordination, timelines, logistics, and on-the-day supervision for flawless execution.',
+    features:['Venue Sourcing','Vendor Management','Run-of-Show','On-site Team'] },
+  { icon:'🎥', title:'Live Streaming & AV Production',
+    desc:'Multi-camera live streams broadcast to YouTube, Facebook, LinkedIn and custom platforms. Full AV setup with professional crew.',
+    features:['Multi-cam Setup','Real-time Broadcast','Recording & Edit','Highlight Reels'] },
+  { icon:'📣', title:'Event Promotion & Marketing',
+    desc:'Pre-event buzz campaigns, ticket campaigns, email sequences, influencer seeding, and post-event content to maximise attendance and reach.',
+    features:['Social Campaigns','Email Marketing','Influencer Outreach','Press & PR'] },
+  { icon:'💻', title:'Virtual & Hybrid Events',
+    desc:'Fully managed virtual conferences, webinars, and hybrid events with interactive Q&A, breakout rooms, and global audience management.',
+    features:['Webinars','Conferences','Breakout Rooms','Global Reach'] },
+]
+
+const TYPES = [
+  { icon:'🏢', label:'Corporate Conferences' },
+  { icon:'🎵', label:'Music & Festivals' },
+  { icon:'🏆', label:'Award Ceremonies' },
+  { icon:'🚀', label:'Product Launches' },
+  { icon:'👰', label:'Social Events' },
+  { icon:'🎓', label:'Academic Events' },
+  { icon:'🌐', label:'Virtual Summits' },
+  { icon:'🤝', label:'Networking Events' },
+]
+
+const NUMBERS = [
+  { n:'200+', label:'Events Produced' },
+  { n:'50K+', label:'Total Attendees' },
+  { n:'15+',  label:'Countries' },
+  { n:'100%', label:'On-time Delivery' },
+]
+
+const GALLERY = [
+  { img: corporateImg, title: 'Global Tech Summit 2023', location: 'Singapore', category: 'Corporate' },
+  { img: musicImg, title: 'Summer Beats Festival', location: 'London', category: 'Music' },
+  { img: awardImg, title: 'Annual Industry Awards', location: 'New York', category: 'Awards' },
+  { img: launchImg, title: 'NextGen Product Reveal', location: 'Tokyo', category: 'Product Launch' },
+]
+
+function Badge({ t, children }) {
+  return <span className="badge" style={{ background:`rgba(${t.rgb},.12)`, color:t.accent, border:`1px solid rgba(${t.rgb},.25)`, marginBottom:20 }}><span style={{ width:6,height:6,borderRadius:'50%',background:t.accent,display:'inline-block' }}/>{children}</span>
+}
+
+export default function Events({ theme: t }) {
+  return (
+    <main style={{ paddingTop: 80 }}>
+
+      {/* ── PAGE HERO ── */}
+      <section style={{ background:t.bg, padding:'80px 0 64px', position:'relative', overflow:'hidden' }}>
+        <div className="blob" style={{ width:700,height:700,background:`radial-gradient(circle,rgba(${t.rgb},.16),transparent 70%)`,top:-250,left:-200,pointerEvents:'none' }} />
+        <div className="wrap" style={{ position:'relative', zIndex:1, textAlign:'center' }}>
+          <Badge t={t}>Event Management</Badge>
+          <h1 className="hero-h font-display" style={{ color:t.textHeading, fontSize:'clamp(2.4rem,5vw,4.5rem)', marginBottom:18 }}>
+            Events That <span className="g-text anim-grad" style={{ backgroundImage:t.grad }}>Leave a Mark</span>
+          </h1>
+          <p style={{ fontSize:17, color:t.text, maxWidth:580, margin:'0 auto 36px', lineHeight:1.75 }}>
+            From intimate brand activations to large-scale conferences — we plan, produce, and promote events that people remember.
+          </p>
+          <div style={{ display:'flex', gap:14, justifyContent:'center', flexWrap:'wrap' }}>
+            <Link to="/contact" className="btn btn-lg" style={{ background:t.grad, color:'#fff', boxShadow:t.shadow }}>Plan My Event →</Link>
+            <Link to="/process" className="btn-outline btn" style={{ color:t.accent, border:`1.5px solid rgba(${t.rgb},.35)` }}>See Our Process</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── EVENT NUMBERS ── */}
+      <section style={{ background:t.bgSection, padding:'56px 0' }}>
+        <AnimatedReveal className="wrap">
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:1, background:t.border, borderRadius:20, overflow:'hidden' }}>
+            {NUMBERS.map(({ n, label }) => (
+              <div key={label} style={{ background:t.bgCard, padding:'36px 24px', textAlign:'center' }}>
+                <div className="g-text font-display" style={{ backgroundImage:t.grad, fontSize:'clamp(2rem,3.5vw,3rem)', fontWeight:900, lineHeight:1 }}>{n}</div>
+                <div style={{ fontSize:13, color:t.textMuted, marginTop:8 }}>{label}</div>
+              </div>
+            ))}
+          </div>
+        </AnimatedReveal>
+      </section>
+
+      {/* ── SERVICES ── */}
+      <section className="sec" style={{ background:t.bg }}>
+        <AnimatedReveal className="wrap">
+          <div style={{ textAlign:'center', marginBottom:52 }}>
+            <Badge t={t}>Event Services</Badge>
+            <h2 className="sec-h font-display" style={{ color:t.textHeading }}>Everything <span className="g-text" style={{ backgroundImage:t.grad }}>Event-Related</span></h2>
+            <p style={{ color:t.text, fontSize:16, marginTop:12 }}>One team handles it all — so nothing falls through the cracks.</p>
+          </div>
+          <div className="grid-2">
+            {EVENTS.map(({ icon, title, desc, features }) => (
+              <div key={title} className="card card-shine" style={{ background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:22, padding:'36px 32px' }}
+                onMouseEnter={e=>{ e.currentTarget.style.borderColor=`rgba(${t.rgb},.5)`; e.currentTarget.style.boxShadow=t.shadow }}
+                onMouseLeave={e=>{ e.currentTarget.style.borderColor=t.border; e.currentTarget.style.boxShadow='none' }}
+              >
+                <div style={{ width:56,height:56,borderRadius:18,background:`rgba(${t.rgb},.12)`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:28,marginBottom:20 }}>{icon}</div>
+                <h3 style={{ fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:20,color:t.textHeading,marginBottom:12 }}>{title}</h3>
+                <p style={{ fontSize:14,lineHeight:1.75,color:t.text,marginBottom:20 }}>{desc}</p>
+                <div style={{ display:'flex',flexWrap:'wrap',gap:8 }}>
+                  {features.map(f => (
+                    <span key={f} style={{ fontSize:12,fontWeight:600,padding:'5px 12px',borderRadius:99,background:`rgba(${t.rgb},.1)`,color:t.accent,border:`1px solid rgba(${t.rgb},.2)` }}>✓ {f}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </AnimatedReveal>
+      </section>
+
+      {/* ── EVENT TYPES ── */}
+      <section className="sec-sm" style={{ background:t.bgSection }}>
+        <AnimatedReveal className="wrap" style={{ textAlign:'center' }}>
+          <Badge t={t}>Types of Events</Badge>
+          <h2 className="sec-h font-display" style={{ color:t.textHeading, marginBottom:40 }}>Events We <span className="g-text" style={{ backgroundImage:t.grad }}>Specialise</span> In</h2>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(200px, 1fr))', gap:16 }}>
+            {TYPES.map(({ icon, label }) => (
+              <div key={label} className="card" style={{ background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:18, padding:'28px 20px', textAlign:'center', cursor:'default' }}
+                onMouseEnter={e=>{ e.currentTarget.style.borderColor=`rgba(${t.rgb},.5)`; e.currentTarget.style.boxShadow=t.shadow }}
+                onMouseLeave={e=>{ e.currentTarget.style.borderColor=t.border; e.currentTarget.style.boxShadow='none' }}
+              >
+                <div style={{ fontSize:32, marginBottom:12 }}>{icon}</div>
+                <div style={{ fontSize:14, fontWeight:600, color:t.textHeading }}>{label}</div>
+              </div>
+            ))}
+          </div>
+        </AnimatedReveal>
+      </section>
+
+      {/* ── RECENT EVENTS GALLERY ── */}
+      <section className="sec" style={{ background:t.bg }}>
+        <AnimatedReveal className="wrap">
+          <div style={{ textAlign:'center', marginBottom:52 }}>
+            <Badge t={t}>Recent Highlights</Badge>
+            <h2 className="sec-h font-display" style={{ color:t.textHeading }}>Experience the <span className="g-text" style={{ backgroundImage:t.grad }}>Magic</span></h2>
+            <p style={{ color:t.text, fontSize:16, marginTop:12 }}>A glimpse into some of our most successful recent collaborations.</p>
+          </div>
+          
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(300px, 1fr))', gap:24 }}>
+            {GALLERY.map(({ img, title, location, category }) => (
+              <div key={title} className="card-shine" style={{ position:'relative', borderRadius:24, overflow:'hidden', height:350, background:t.bgCard, border:`1px solid ${t.border}`, cursor:'pointer', group:'true' }}
+                onMouseEnter={e => {
+                  const overlay = e.currentTarget.querySelector('.overlay');
+                  const imgEl = e.currentTarget.querySelector('img');
+                  if (overlay) overlay.style.opacity = '1';
+                  if (imgEl) imgEl.style.transform = 'scale(1.1)';
+                }}
+                onMouseLeave={e => {
+                  const overlay = e.currentTarget.querySelector('.overlay');
+                  const imgEl = e.currentTarget.querySelector('img');
+                  if (overlay) overlay.style.opacity = '0';
+                  if (imgEl) imgEl.style.transform = 'scale(1)';
+                }}
+              >
+                <img src={img} alt={title} style={{ width:'100%', height:'100%', objectFit:'cover', transition:'transform .6s cubic-bezier(0.4, 0, 0.2, 1)' }} />
+                
+                <div className="overlay" style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)', display:'flex', flexDirection:'column', justifyContent:'flex-end', padding:32, opacity:0, transition:'opacity .4s ease' }}>
+                  <span style={{ fontSize:12, fontWeight:700, textTransform:'uppercase', letterSpacing:1, color:t.accent, marginBottom:8 }}>{category}</span>
+                  <h3 style={{ color:'#fff', fontSize:22, fontWeight:700, marginBottom:4, fontFamily:'Syne,sans-serif' }}>{title}</h3>
+                  <p style={{ color:'rgba(255,255,255,0.7)', fontSize:14 }}>📍 {location}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </AnimatedReveal>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="sec-sm" style={{ background:t.bg }}>
+        <AnimatedReveal className="wrap">
+          <div style={{ background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:28, padding:'72px 48px', textAlign:'center', position:'relative', overflow:'hidden' }}>
+            <div className="blob" style={{ width:400,height:400,background:`radial-gradient(circle,rgba(${t.rgb},.16),transparent 70%)`,top:-80,left:'50%',transform:'translateX(-50%)',pointerEvents:'none' }} />
+            <div style={{ position:'relative', zIndex:1 }}>
+              <h2 className="sec-h font-display" style={{ color:t.textHeading, marginBottom:16 }}>
+                Tell Us About <span className="g-text anim-grad" style={{ backgroundImage:t.grad }}>Your Event</span>
+              </h2>
+              <p style={{ fontSize:16, color:t.text, marginBottom:32 }}>Get a custom quote in 24 hours. No commitment required.</p>
+              <Link to="/contact" className="btn btn-lg" style={{ background:t.grad, color:'#fff', boxShadow:t.shadow }}>Request a Quote 🎪</Link>
+            </div>
+          </div>
+        </AnimatedReveal>
+      </section>
+    </main>
+  )
+}
