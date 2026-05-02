@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
+import { Mail, Phone, MapPin, Clock, PartyPopper, Plus, Send } from 'lucide-react'
 
 const FAQS = [
   { q: 'How quickly can you start?', a: 'We can onboard new clients within 3–5 business days. For events, we recommend reaching out at least 4 weeks before your event date.' },
@@ -24,7 +25,7 @@ function FaqItem({ q, a, t }) {
         style={{ width: '100%', textAlign: 'left', padding: '20px 24px', background: open ? `rgba(${t.rgb},.06)` : t.bgCard, border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', transition: 'background .2s' }}
       >
         <span style={{ fontSize: 15, fontWeight: 600, color: t.textHeading }}>{q}</span>
-        <span style={{ fontSize: 20, color: t.accent, transform: open ? 'rotate(45deg)' : 'rotate(0)', transition: 'transform .25s', flexShrink: 0 }}>+</span>
+        <span style={{ color: t.accent, transform: open ? 'rotate(45deg)' : 'rotate(0)', transition: 'transform .25s', flexShrink: 0, display: 'flex' }}><Plus size={20} /></span>
       </button>
       {open && <div style={{ padding: '0 24px 20px', fontSize: 14, lineHeight: 1.75, color: t.text, background: `rgba(${t.rgb},.04)` }}>{a}</div>}
     </div>
@@ -36,7 +37,13 @@ export default function Contact({ theme: t }) {
   const [sent, setSent] = useState(false)
 
   const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-  const submit = e => { e.preventDefault(); setSent(true) }
+  const submit = e => {
+    e.preventDefault();
+    const text = `*New Contact Inquiry*\n\n*Name:* ${form.name}\n*Email:* ${form.email}\n*Company:* ${form.company}\n*Service:* ${form.service}\n*Budget:* ${form.budget}\n*Message:* ${form.message}`;
+    const url = `https://api.whatsapp.com/send?phone=923144085533&text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+    setSent(true);
+  }
 
   const inp = {
     width: '100%', padding: '13px 16px', borderRadius: 12,
@@ -78,12 +85,12 @@ export default function Contact({ theme: t }) {
 
               {/* Info cards */}
               {[
-                { icon: '📧', label: 'Email Us', val: 'hello@edugrow.agency' },
-                { icon: '📞', label: 'Call Us', val: '+1 (234) 567-8900' },
-                { icon: '📍', label: 'Office', val: '123 Agency St, New York, NY 10001' },
-                { icon: '🕐', label: 'Working Hours', val: 'Mon–Fri · 9:00 AM – 6:00 PM EST' },
-              ].map(({ icon, label, val }) => (
-                <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20, padding: '18px 20px', borderRadius: 16, background: t.bgCard, border: `1px solid ${t.border}` }}>
+                { icon: <Mail size={22} />, label: 'Email Us', val: 'jahangeerk1998@gmail.com' },
+                { icon: <Phone size={22} />, label: 'Call Us', val: '03144085533' },
+                { icon: <MapPin size={22} />, label: 'Office', val: '123 Agency St, New York, NY 10001' },
+                { icon: <Clock size={22} />, label: 'Working Hours', val: 'Mon–Fri · 9:00 AM – 6:00 PM EST' },
+              ].map(({ icon, label, val }, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20, padding: '18px 20px', borderRadius: 16, background: t.bgCard, border: `1px solid ${t.border}` }}>
                   <div style={{ width: 44, height: 44, borderRadius: 14, background: `rgba(${t.rgb},.12)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, flexShrink: 0 }}>{icon}</div>
                   <div>
                     <div style={{ fontSize: 12, fontWeight: 600, color: t.textMuted, letterSpacing: '.05em', textTransform: 'uppercase' }}>{label}</div>
@@ -110,7 +117,7 @@ export default function Contact({ theme: t }) {
             <div style={{ background: t.bgCard, border: `1px solid ${t.border}`, borderRadius: 24, padding: '40px 36px' }}>
               {sent ? (
                 <div style={{ textAlign: 'center', padding: '40px 0' }}>
-                  <div style={{ fontSize: 56, marginBottom: 20 }}>🎉</div>
+                  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20, color: t.accent }}><PartyPopper size={56} /></div>
                   <h3 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 24, color: t.textHeading, marginBottom: 12 }}>Message Sent!</h3>
                   <p style={{ fontSize: 15, color: t.text, lineHeight: 1.7, marginBottom: 28 }}>Thanks for reaching out. Our team will get back to you within 24 hours.</p>
                   <button onClick={() => setSent(false)} className="btn btn-md" style={{ background: t.grad, color: '#fff' }}>Send Another</button>
@@ -122,11 +129,11 @@ export default function Contact({ theme: t }) {
                   <div className="contact-form-grid">
                     <div>
                       <label style={{ fontSize: 12, fontWeight: 600, color: t.textMuted, display: 'block', marginBottom: 6 }}>Full Name *</label>
-                      <input required name="name" value={form.name} onChange={handle} onFocus={focus} onBlur={blur} placeholder="Jane Smith" style={inp} />
+                      <input required name="name" value={form.name} onChange={handle} onFocus={focus} onBlur={blur} placeholder="Your Name" style={inp} />
                     </div>
                     <div>
                       <label style={{ fontSize: 12, fontWeight: 600, color: t.textMuted, display: 'block', marginBottom: 6 }}>Email *</label>
-                      <input required type="email" name="email" value={form.email} onChange={handle} onFocus={focus} onBlur={blur} placeholder="jane@company.com" style={inp} />
+                      <input required type="email" name="email" value={form.email} onChange={handle} onFocus={focus} onBlur={blur} placeholder="yourname@email.com" style={inp} />
                     </div>
                   </div>
 
@@ -157,8 +164,8 @@ export default function Contact({ theme: t }) {
                     <textarea required name="message" value={form.message} onChange={handle} onFocus={focus} onBlur={blur} rows={5} placeholder="Tell us about your brand, goals, and what you're looking to achieve..." style={{ ...inp, resize: 'vertical' }} />
                   </div>
 
-                  <button type="submit" className="btn btn-lg" style={{ background: t.grad, color: '#fff', boxShadow: t.shadow, width: '100%', justifyContent: 'center' }}>
-                    Send Message →
+                  <button type="submit" className="btn btn-lg" style={{ background: t.grad, color: '#fff', boxShadow: t.shadow, width: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 8 }}>
+                    Send Message <Send size={18} />
                   </button>
                 </form>
               )}

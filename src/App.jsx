@@ -11,7 +11,7 @@ import Contact from './pages/Contact'
 import ScrollToTop from './components/ScrollToTop'
 
 export default function App() {
-  const [activeTheme, setActiveTheme] = useState('cosmic')
+  const [activeTheme, setActiveTheme] = useState('light')
   const theme = themes[activeTheme]
 
   return (

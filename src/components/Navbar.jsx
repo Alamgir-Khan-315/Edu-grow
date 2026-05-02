@@ -1,20 +1,27 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
+import { Briefcase, Sparkles, Zap, Sun, Waves, Menu, X, ChevronDown } from 'lucide-react'
+
+const themeIcons = {
+  neon: <Zap size={15} />,
+  light: <Sun size={15} />,
+  ocean: <Waves size={15} />
+}
 
 const NAV = [
   { label: 'Home',     to: '/' },
   { label: 'Services', to: '/services', dropdown: [
-    { label: 'Social Media Management', to: '/services' },
-    { label: 'Content Creation', to: '/services' },
-    { label: 'Analytics & Reporting', to: '/services' },
-    { label: 'Paid Advertising', to: '/services' },
-    { label: 'Influencer Marketing', to: '/services' },
+    { label: 'Social Media Management', to: '/services#social-media-management' },
+    { label: 'Content Creation', to: '/services#content-creation' },
+    { label: 'Analytics & Reporting', to: '/services#analytics-reporting' },
+    { label: 'Paid Advertising', to: '/services#paid-advertising' },
+    { label: 'Influencer Marketing', to: '/services#influencer-marketing' },
   ] },
   { label: 'Events',   to: '/events', dropdown: [
-    { label: 'Event Planning', to: '/events' },
-    { label: 'Live Streaming', to: '/events' },
-    { label: 'Event Promotion', to: '/events' },
-    { label: 'Virtual Events', to: '/events' },
+    { label: 'Event Planning', to: '/events#event-planning' },
+    { label: 'Live Streaming', to: '/events#live-streaming' },
+    { label: 'Event Promotion', to: '/events#event-promotion' },
+    { label: 'Virtual Events', to: '/events#virtual-events' },
   ] },
   { label: 'Process',  to: '/process' },
   { label: 'Contact',  to: '/contact' },
@@ -75,7 +82,7 @@ export default function Navbar({ theme: t, themeList, activeTheme, setActiveThem
                   onMouseLeave={e => { if (!e.currentTarget.getAttribute('aria-current')) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = t.text } }}
                 >
                   {label}
-                  {dropdown && <span style={{ fontSize: 10, opacity: 0.6 }}>▼</span>}
+                  {dropdown && <ChevronDown size={14} style={{ opacity: 0.6, marginLeft: 4 }} />}
                 </NavLink>
                 
                 {/* Desktop Dropdown */}
@@ -115,7 +122,7 @@ export default function Navbar({ theme: t, themeList, activeTheme, setActiveThem
                     transform: activeTheme === th.id ? 'scale(1.18)' : 'scale(1)',
                     transition: 'all .25s ease',
                   }}
-                >{th.emoji}</button>
+                >{themeIcons[th.id] || th.emoji}</button>
               ))}
             </div>
 
@@ -137,7 +144,7 @@ export default function Navbar({ theme: t, themeList, activeTheme, setActiveThem
               }}
               aria-label="Toggle menu"
             >
-              {open ? '✕' : '☰'}
+              {open ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
@@ -179,10 +186,11 @@ export default function Navbar({ theme: t, themeList, activeTheme, setActiveThem
                     style={{
                       background: 'none', border: 'none', color: t.textHeading, padding: '14px', cursor: 'pointer',
                       transform: mobileExpanded[label] ? 'rotate(180deg)' : 'rotate(0deg)',
-                      transition: 'transform .3s'
+                      transition: 'transform .3s',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center'
                     }}
                   >
-                    ▼
+                    <ChevronDown size={16} />
                   </button>
                 )}
               </div>

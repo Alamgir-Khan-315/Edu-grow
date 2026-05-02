@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
+import { CalendarCheck, Video, Megaphone, Laptop, Building2, Music, Trophy, Rocket, GlassWater, GraduationCap, Globe, Users } from 'lucide-react'
 
 // Gallery Images
 import corporateImg from '../assets/events/corporate.png'
@@ -8,29 +9,29 @@ import awardImg from '../assets/events/award.png'
 import launchImg from '../assets/events/launch.png'
 
 const EVENTS = [
-  { icon:'🎪', title:'Event Planning & Coordination',
+  { id: 'event-planning', img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800&auto=format&fit=crop', icon: <CalendarCheck size={32} strokeWidth={1.5} />, title:'Event Planning & Coordination',
     desc:'Full end-to-end event management — venue sourcing, vendor coordination, timelines, logistics, and on-the-day supervision for flawless execution.',
     features:['Venue Sourcing','Vendor Management','Run-of-Show','On-site Team'] },
-  { icon:'🎥', title:'Live Streaming & AV Production',
+  { id: 'live-streaming', img: 'https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?q=80&w=800&auto=format&fit=crop', icon: <Video size={32} strokeWidth={1.5} />, title:'Live Streaming & AV Production',
     desc:'Multi-camera live streams broadcast to YouTube, Facebook, LinkedIn and custom platforms. Full AV setup with professional crew.',
     features:['Multi-cam Setup','Real-time Broadcast','Recording & Edit','Highlight Reels'] },
-  { icon:'📣', title:'Event Promotion & Marketing',
+  { id: 'event-promotion', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop', icon: <Megaphone size={32} strokeWidth={1.5} />, title:'Event Promotion & Marketing',
     desc:'Pre-event buzz campaigns, ticket campaigns, email sequences, influencer seeding, and post-event content to maximise attendance and reach.',
     features:['Social Campaigns','Email Marketing','Influencer Outreach','Press & PR'] },
-  { icon:'💻', title:'Virtual & Hybrid Events',
+  { id: 'virtual-events', img: 'https://images.unsplash.com/photo-1585909695284-32d2985ac9c0?q=80&w=800&auto=format&fit=crop', icon: <Laptop size={32} strokeWidth={1.5} />, title:'Virtual & Hybrid Events',
     desc:'Fully managed virtual conferences, webinars, and hybrid events with interactive Q&A, breakout rooms, and global audience management.',
     features:['Webinars','Conferences','Breakout Rooms','Global Reach'] },
 ]
 
 const TYPES = [
-  { icon:'🏢', label:'Corporate Conferences' },
-  { icon:'🎵', label:'Music & Festivals' },
-  { icon:'🏆', label:'Award Ceremonies' },
-  { icon:'🚀', label:'Product Launches' },
-  { icon:'👰', label:'Social Events' },
-  { icon:'🎓', label:'Academic Events' },
-  { icon:'🌐', label:'Virtual Summits' },
-  { icon:'🤝', label:'Networking Events' },
+  { icon: <Building2 size={32} strokeWidth={1.5} />, label:'Corporate Conferences' },
+  { icon: <Music size={32} strokeWidth={1.5} />, label:'Music & Festivals' },
+  { icon: <Trophy size={32} strokeWidth={1.5} />, label:'Award Ceremonies' },
+  { icon: <Rocket size={32} strokeWidth={1.5} />, label:'Product Launches' },
+  { icon: <GlassWater size={32} strokeWidth={1.5} />, label:'Social Events' },
+  { icon: <GraduationCap size={32} strokeWidth={1.5} />, label:'Academic Events' },
+  { icon: <Globe size={32} strokeWidth={1.5} />, label:'Virtual Summits' },
+  { icon: <Users size={32} strokeWidth={1.5} />, label:'Networking Events' },
 ]
 
 const NUMBERS = [
@@ -87,33 +88,28 @@ export default function Events({ theme: t }) {
         </AnimatedReveal>
       </section>
 
-      {/* ── SERVICES ── */}
-      <section className="sec" style={{ background:t.bg }}>
-        <AnimatedReveal className="wrap">
-          <div style={{ textAlign:'center', marginBottom:52 }}>
-            <Badge t={t}>Event Services</Badge>
-            <h2 className="sec-h font-display" style={{ color:t.textHeading }}>Everything <span className="g-text" style={{ backgroundImage:t.grad }}>Event-Related</span></h2>
-            <p style={{ color:t.text, fontSize:16, marginTop:12 }}>One team handles it all — so nothing falls through the cracks.</p>
-          </div>
-          <div className="grid-2">
-            {EVENTS.map(({ icon, title, desc, features }) => (
-              <div key={title} className="card card-shine" style={{ background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:22, padding:'36px 32px' }}
-                onMouseEnter={e=>{ e.currentTarget.style.borderColor=`rgba(${t.rgb},.5)`; e.currentTarget.style.boxShadow=t.shadow }}
-                onMouseLeave={e=>{ e.currentTarget.style.borderColor=t.border; e.currentTarget.style.boxShadow='none' }}
-              >
-                <div style={{ width:56,height:56,borderRadius:18,background:`rgba(${t.rgb},.12)`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:28,marginBottom:20 }}>{icon}</div>
-                <h3 style={{ fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:20,color:t.textHeading,marginBottom:12 }}>{title}</h3>
-                <p style={{ fontSize:14,lineHeight:1.75,color:t.text,marginBottom:20 }}>{desc}</p>
-                <div style={{ display:'flex',flexWrap:'wrap',gap:8 }}>
+      {/* ── EVENT SECTIONS ── */}
+      <div>
+        {EVENTS.map(({ id, img, icon, title, desc, features }, i) => (
+          <section key={id} id={id} className="sec" style={{ background: i % 2 === 0 ? t.bg : t.bgSection, scrollMarginTop: '80px' }}>
+            <AnimatedReveal className="wrap" style={{ display: 'flex', flexDirection: i % 2 === 0 ? 'row' : 'row-reverse', alignItems: 'center', gap: 60, flexWrap: 'wrap' }}>
+              <div style={{ flex: '1 1 400px' }}>
+                <div style={{ width: 64, height: 64, borderRadius: 20, background: `rgba(${t.rgb},.12)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32, marginBottom: 24 }}>{icon}</div>
+                <h2 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 32, color: t.textHeading, marginBottom: 16 }}>{title}</h2>
+                <p style={{ fontSize: 17, lineHeight: 1.8, color: t.text, marginBottom: 24 }}>{desc}</p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                   {features.map(f => (
-                    <span key={f} style={{ fontSize:12,fontWeight:600,padding:'5px 12px',borderRadius:99,background:`rgba(${t.rgb},.1)`,color:t.accent,border:`1px solid rgba(${t.rgb},.2)` }}>✓ {f}</span>
+                    <span key={f} style={{ fontSize: 13, fontWeight: 600, padding: '6px 14px', borderRadius: 99, background: `rgba(${t.rgb},.1)`, color: t.accent, border: `1px solid rgba(${t.rgb},.2)` }}>✓ {f}</span>
                   ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </AnimatedReveal>
-      </section>
+              <div style={{ flex: '1 1 400px', height: 400, borderRadius: 32, overflow: 'hidden', boxShadow: t.shadow, border: `1px solid ${t.border}` }}>
+                <img src={img} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+            </AnimatedReveal>
+          </section>
+        ))}
+      </div>
 
       {/* ── EVENT TYPES ── */}
       <section className="sec-sm" style={{ background:t.bgSection }}>
@@ -122,11 +118,11 @@ export default function Events({ theme: t }) {
           <h2 className="sec-h font-display" style={{ color:t.textHeading, marginBottom:40 }}>Events We <span className="g-text" style={{ backgroundImage:t.grad }}>Specialise</span> In</h2>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(200px, 1fr))', gap:16 }}>
             {TYPES.map(({ icon, label }) => (
-              <div key={label} className="card" style={{ background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:18, padding:'28px 20px', textAlign:'center', cursor:'default' }}
+              <div key={label} className="card" style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:18, padding:'28px 20px', textAlign:'center', cursor:'default' }}
                 onMouseEnter={e=>{ e.currentTarget.style.borderColor=`rgba(${t.rgb},.5)`; e.currentTarget.style.boxShadow=t.shadow }}
                 onMouseLeave={e=>{ e.currentTarget.style.borderColor=t.border; e.currentTarget.style.boxShadow='none' }}
               >
-                <div style={{ fontSize:32, marginBottom:12 }}>{icon}</div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize:32, marginBottom:12, color: t.accent }}>{icon}</div>
                 <div style={{ fontSize:14, fontWeight:600, color:t.textHeading }}>{label}</div>
               </div>
             ))}
@@ -182,7 +178,7 @@ export default function Events({ theme: t }) {
                 Tell Us About <span className="g-text anim-grad" style={{ backgroundImage:t.grad }}>Your Event</span>
               </h2>
               <p style={{ fontSize:16, color:t.text, marginBottom:32 }}>Get a custom quote in 24 hours. No commitment required.</p>
-              <Link to="/contact" className="btn btn-lg" style={{ background:t.grad, color:'#fff', boxShadow:t.shadow }}>Request a Quote 🎪</Link>
+              <Link to="/contact" className="btn btn-lg" style={{ background:t.grad, color:'#fff', boxShadow:t.shadow, display: 'inline-flex', alignItems: 'center', gap: 8 }}>Request a Quote <CalendarCheck size={18} /></Link>
             </div>
           </div>
         </AnimatedReveal>

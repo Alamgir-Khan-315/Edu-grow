@@ -1,23 +1,24 @@
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
+import { Smartphone, PenTool, BarChart3, BadgeDollarSign, Megaphone, Crosshair } from 'lucide-react'
 
 const SERVICES = [
-  { icon:'📱', title:'Social Media Management',
+  { id: 'social-media-management', img: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop', icon: <Smartphone size={32} strokeWidth={1.5} />, title:'Social Media Management',
     desc:'Full-cycle management of Instagram, TikTok, LinkedIn, X & YouTube. Posting schedules, community engagement, and follower growth — all handled.',
     tags:['Instagram','TikTok','LinkedIn','X'] },
-  { icon:'✍️', title:'Content Creation',
+  { id: 'content-creation', img: 'https://images.unsplash.com/photo-1542744094-24638eff58bb?q=80&w=800&auto=format&fit=crop', icon: <PenTool size={32} strokeWidth={1.5} />, title:'Content Creation',
     desc:'Scroll-stopping graphics, reels, carousels, and copy tailored to your brand voice. Our creative team produces 30+ pieces monthly.',
     tags:['Reels','Carousels','Copywriting','Design'] },
-  { icon:'📊', title:'Analytics & Reporting',
+  { id: 'analytics-reporting', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop', icon: <BarChart3 size={32} strokeWidth={1.5} />, title:'Analytics & Reporting',
     desc:'Monthly deep-dive reports with KPI tracking, competitor benchmarking, and actionable roadmaps to continuously improve ROI.',
     tags:['KPIs','Dashboards','Insights','ROI'] },
-  { icon:'💰', title:'Paid Advertising',
+  { id: 'paid-advertising', img: 'https://images.unsplash.com/photo-1533750516457-a7f992034fec?q=80&w=800&auto=format&fit=crop', icon: <BadgeDollarSign size={32} strokeWidth={1.5} />, title:'Paid Advertising',
     desc:'High-ROAS ad campaigns on Meta, TikTok, Google & YouTube. From audience research to creative testing and full optimisation.',
     tags:['Meta Ads','Google Ads','TikTok Ads','Retargeting'] },
-  { icon:'🌟', title:'Influencer Marketing',
+  { id: 'influencer-marketing', img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=800&auto=format&fit=crop', icon: <Megaphone size={32} strokeWidth={1.5} />, title:'Influencer Marketing',
     desc:'Identify, negotiate, and manage creator partnerships that authentically amplify your brand to highly targeted audiences.',
     tags:['Nano','Micro','Macro','UGC'] },
-  { icon:'🎯', title:'Brand Strategy',
+  { id: 'brand-strategy', img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop', icon: <Crosshair size={32} strokeWidth={1.5} />, title:'Brand Strategy',
     desc:'Brand positioning, voice guidelines, visual identity, and a 12-month growth roadmap built specifically around your goals.',
     tags:['Positioning','Identity','Voice','Roadmap'] },
 ]
@@ -54,31 +55,28 @@ export default function Services({ theme: t }) {
         </div>
       </section>
 
-      {/* ── SERVICE CARDS ── */}
-      <section className="sec" style={{ background:t.bgSection }}>
-        <AnimatedReveal className="wrap">
-          <div style={{ textAlign:'center', marginBottom:52 }}>
-            <h2 className="sec-h font-display" style={{ color:t.textHeading }}>Our <span className="g-text" style={{ backgroundImage:t.grad }}>Six Core</span> Services</h2>
-          </div>
-          <div className="grid-3">
-            {SERVICES.map(({ icon, title, desc, tags }) => (
-              <div key={title} className="card card-shine" style={{ background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:20, padding:'32px 28px', display:'flex', flexDirection:'column' }}
-                onMouseEnter={e=>{ e.currentTarget.style.borderColor=`rgba(${t.rgb},.5)`; e.currentTarget.style.boxShadow=t.shadow }}
-                onMouseLeave={e=>{ e.currentTarget.style.borderColor=t.border; e.currentTarget.style.boxShadow='none' }}
-              >
-                <div style={{ width:54,height:54,borderRadius:16,background:`rgba(${t.rgb},.12)`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:26,marginBottom:18 }}>{icon}</div>
-                <h3 style={{ fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:18,color:t.textHeading,marginBottom:10 }}>{title}</h3>
-                <p style={{ fontSize:14,lineHeight:1.75,color:t.text,marginBottom:18,flex:1 }}>{desc}</p>
-                <div style={{ display:'flex',flexWrap:'wrap',gap:6 }}>
+      {/* ── SERVICE SECTIONS ── */}
+      <div>
+        {SERVICES.map(({ id, img, icon, title, desc, tags }, i) => (
+          <section key={id} id={id} className="sec" style={{ background: i % 2 === 0 ? t.bgSection : t.bg, scrollMarginTop: '80px' }}>
+            <AnimatedReveal className="wrap" style={{ display: 'flex', flexDirection: i % 2 === 0 ? 'row' : 'row-reverse', alignItems: 'center', gap: 60, flexWrap: 'wrap' }}>
+              <div style={{ flex: '1 1 400px' }}>
+                <div style={{ width: 64, height: 64, borderRadius: 20, background: `rgba(${t.rgb},.12)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32, marginBottom: 24 }}>{icon}</div>
+                <h2 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 32, color: t.textHeading, marginBottom: 16 }}>{title}</h2>
+                <p style={{ fontSize: 17, lineHeight: 1.8, color: t.text, marginBottom: 24 }}>{desc}</p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                   {tags.map(tag => (
-                    <span key={tag} style={{ fontSize:11,fontWeight:600,padding:'4px 10px',borderRadius:99,background:`rgba(${t.rgb},.1)`,color:t.accent,border:`1px solid rgba(${t.rgb},.2)` }}>{tag}</span>
+                    <span key={tag} style={{ fontSize: 12, fontWeight: 600, padding: '6px 14px', borderRadius: 99, background: `rgba(${t.rgb},.1)`, color: t.accent, border: `1px solid rgba(${t.rgb},.2)` }}>{tag}</span>
                   ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </AnimatedReveal>
-      </section>
+              <div style={{ flex: '1 1 400px', height: 400, borderRadius: 32, overflow: 'hidden', boxShadow: t.shadow, border: `1px solid ${t.border}` }}>
+                <img src={img} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+            </AnimatedReveal>
+          </section>
+        ))}
+      </div>
 
       {/* ── PLATFORMS ── */}
       <section className="sec-sm" style={{ background:t.bg }}>
@@ -105,7 +103,7 @@ export default function Services({ theme: t }) {
           </div>
           <div className="grid-4">
             {PROCESS.map(({ n, title, desc }, i) => (
-              <div key={n} style={{ position:'relative' }}>
+              <div key={n} style={{ position:'relative', height: '100%' }}>
                 <div className="card" style={{ background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:20, padding:'28px 24px', height:'100%' }}
                   onMouseEnter={e=>{ e.currentTarget.style.borderColor=`rgba(${t.rgb},.5)`; e.currentTarget.style.boxShadow=t.shadow }}
                   onMouseLeave={e=>{ e.currentTarget.style.borderColor=t.border; e.currentTarget.style.boxShadow='none' }}

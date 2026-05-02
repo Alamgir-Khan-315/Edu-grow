@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
+import { Smartphone, Calendar, TrendingUp, Target, Star, Rocket } from 'lucide-react'
 
 const STATS = [
   { n:'500+', label:'Happy Clients' },
@@ -9,10 +10,10 @@ const STATS = [
 ]
 
 const HIGHLIGHTS = [
-  { icon:'📱', title:'Social Media',  desc:'Full platform management — Instagram, TikTok, LinkedIn, X, YouTube. We handle posting, engagement and growth.', to:'/services' },
-  { icon:'🎪', title:'Event Services', desc:'End-to-end event planning, live streaming, promotion and virtual event production.', to:'/events' },
-  { icon:'📊', title:'Analytics',     desc:'Real-time reporting dashboards and monthly deep-dives to keep you ahead of the data.', to:'/services' },
-  { icon:'🚀', title:'Paid Ads',      desc:'High-ROAS campaigns across Meta, TikTok, Google and YouTube — setup to scale.', to:'/services' },
+  { icon: <Smartphone size={28} strokeWidth={1.5} />, title:'Social Media',  desc:'Full platform management — Instagram, TikTok, LinkedIn, X, YouTube. We handle posting, engagement and growth.', to:'/services' },
+  { icon: <Calendar size={28} strokeWidth={1.5} />, title:'Event Services', desc:'End-to-end event planning, live streaming, promotion and virtual event production.', to:'/events' },
+  { icon: <TrendingUp size={28} strokeWidth={1.5} />, title:'Analytics',     desc:'Real-time reporting dashboards and monthly deep-dives to keep you ahead of the data.', to:'/services' },
+  { icon: <Target size={28} strokeWidth={1.5} />, title:'Paid Ads',      desc:'High-ROAS campaigns across Meta, TikTok, Google and YouTube — setup to scale.', to:'/services' },
 ]
 
 const TESTIMONIALS = [
@@ -119,8 +120,8 @@ export default function Home({ theme: t }) {
                 onMouseEnter={e=>{ e.currentTarget.style.borderColor=`rgba(${t.rgb},.45)`; e.currentTarget.style.boxShadow=t.glow }}
                 onMouseLeave={e=>{ e.currentTarget.style.borderColor=t.border; e.currentTarget.style.boxShadow='none' }}
               >
-                <div style={{ display:'flex', gap:3, marginBottom:16 }}>
-                  {Array(rating).fill('★').map((s,i) => <span key={i} style={{ color:t.accent, fontSize:17 }}>{s}</span>)}
+                <div style={{ display:'flex', gap:3, marginBottom:16, color:t.accent }}>
+                  {Array(rating).fill('').map((_,i) => <Star key={i} size={16} fill="currentColor" strokeWidth={0} />)}
                 </div>
                 <p style={{ fontSize:15, lineHeight:1.75, color:t.text, fontStyle:'italic', marginBottom:24 }}>"{quote}"</p>
                 <div style={{ display:'flex', alignItems:'center', gap:12 }}>
@@ -148,7 +149,7 @@ export default function Home({ theme: t }) {
               <p style={{ fontSize:17, color:t.text, marginBottom:36, maxWidth:460, margin:'0 auto 36px' }}>
                 Book a free 30-minute strategy call. No pressure, just insights.
               </p>
-              <Link to="/contact" className="btn btn-lg" style={{ background:t.grad, color:'#fff', boxShadow:t.shadow }}>Book Free Call 🚀</Link>
+              <Link to="/contact" className="btn btn-lg" style={{ background:t.grad, color:'#fff', boxShadow:t.shadow, display: 'inline-flex', alignItems: 'center', gap: 8 }}>Book Free Call <Rocket size={18} /></Link>
             </div>
           </div>
         </AnimatedReveal>
