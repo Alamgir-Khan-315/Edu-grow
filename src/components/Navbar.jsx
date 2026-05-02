@@ -9,22 +9,26 @@ const themeIcons = {
 }
 
 const NAV = [
-  { label: 'Home',     to: '/' },
-  { label: 'Services', to: '/services', dropdown: [
-    { label: 'Social Media Management', to: '/services#social-media-management' },
-    { label: 'Content Creation', to: '/services#content-creation' },
-    { label: 'Analytics & Reporting', to: '/services#analytics-reporting' },
-    { label: 'Paid Advertising', to: '/services#paid-advertising' },
-    { label: 'Influencer Marketing', to: '/services#influencer-marketing' },
-  ] },
-  { label: 'Events',   to: '/events', dropdown: [
-    { label: 'Event Planning', to: '/events#event-planning' },
-    { label: 'Live Streaming', to: '/events#live-streaming' },
-    { label: 'Event Promotion', to: '/events#event-promotion' },
-    { label: 'Virtual Events', to: '/events#virtual-events' },
-  ] },
-  { label: 'Process',  to: '/process' },
-  { label: 'Contact',  to: '/contact' },
+  { label: 'Home', to: '/' },
+  {
+    label: 'Services', to: '/services', dropdown: [
+      { label: 'Social Media Management', to: '/services#social-media-management' },
+      { label: 'Content Creation', to: '/services#content-creation' },
+      { label: 'Analytics & Reporting', to: '/services#analytics-reporting' },
+      { label: 'Paid Advertising', to: '/services#paid-advertising' },
+      { label: 'Influencer Marketing', to: '/services#influencer-marketing' },
+    ]
+  },
+  {
+    label: 'Events', to: '/events', dropdown: [
+      { label: 'Event Planning', to: '/events#event-planning' },
+      { label: 'Live Streaming', to: '/events#live-streaming' },
+      { label: 'Event Promotion', to: '/events#event-promotion' },
+      { label: 'Virtual Events', to: '/events#virtual-events' },
+    ]
+  },
+  { label: 'Process', to: '/process' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export default function Navbar({ theme: t, themeList, activeTheme, setActiveTheme }) {
@@ -60,10 +64,12 @@ export default function Navbar({ theme: t, themeList, activeTheme, setActiveThem
 
           {/* ── Logo ── */}
           <Link to="/" onClick={() => setOpen(false)} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-            <div style={{ width: 38, height: 38, borderRadius: 12, background: t.grad, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, color: '#fff', fontSize: 19, fontFamily: 'Syne, sans-serif', boxShadow: t.shadow, flexShrink: 0 }}>E</div>
-            <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 22, color: t.textHeading }}>
+            <div style={{ width: 150, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <img src="/Logo/PM-removebg-preview.png" alt="Logo" style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
+            </div>
+            {/* <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 22, color: t.textHeading }}>
               Edugrow<span style={{ color: t.accent }}>.</span>
-            </span>
+            </span> */}
           </Link>
 
           {/* ── Desktop nav links ── */}
@@ -84,7 +90,7 @@ export default function Navbar({ theme: t, themeList, activeTheme, setActiveThem
                   {label}
                   {dropdown && <ChevronDown size={14} style={{ opacity: 0.6, marginLeft: 4 }} />}
                 </NavLink>
-                
+
                 {/* Desktop Dropdown */}
                 {dropdown && (
                   <div className="nav-dropdown">
@@ -194,7 +200,7 @@ export default function Navbar({ theme: t, themeList, activeTheme, setActiveThem
                   </button>
                 )}
               </div>
-              
+
               {/* Mobile Dropdown items */}
               {dropdown && mobileExpanded[label] && (
                 <div style={{ paddingBottom: '14px', paddingLeft: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
