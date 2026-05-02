@@ -70,7 +70,7 @@ export default function Services({ theme: t }) {
                   ))}
                 </div>
               </div>
-              <div style={{ flex: '1 1 300px', height: 'clamp(280px, 40vw, 400px)', borderRadius: 28, overflow: 'hidden', boxShadow: t.shadow, border: `1px solid ${t.border}` }}>
+              <div style={{ flex: '1 1 300px', maxWidth: '600px', width: '100%', aspectRatio: '16 / 10', borderRadius: 28, overflow: 'hidden', boxShadow: t.shadow, border: `1px solid ${t.border}` }}>
                 <img src={img} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             </AnimatedReveal>

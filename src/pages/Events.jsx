@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
-import { CalendarCheck, Video, Megaphone, Laptop, Building2, Music, Trophy, Rocket, GlassWater, GraduationCap, Globe, Users } from 'lucide-react'
+import { CalendarCheck, Video, Megaphone, Laptop, Building2, Music, Trophy, Rocket, GlassWater, GraduationCap, Globe, Users, Camera, Mic2 } from 'lucide-react'
+import CountUp from '../components/CountUp'
 
 // Gallery Images
 import corporateImg from '../assets/events/corporate.png'
@@ -12,9 +13,12 @@ const EVENTS = [
   { id: 'event-planning', img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800&auto=format&fit=crop', icon: <CalendarCheck size={32} strokeWidth={1.5} />, title:'Event Planning & Coordination',
     desc:'Full end-to-end event management — venue sourcing, vendor coordination, timelines, logistics, and on-the-day supervision for flawless execution.',
     features:['Venue Sourcing','Vendor Management','Run-of-Show','On-site Team'] },
-  { id: 'live-streaming', img: 'https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?q=80&w=800&auto=format&fit=crop', icon: <Video size={32} strokeWidth={1.5} />, title:'Live Streaming & AV Production',
-    desc:'Multi-camera live streams broadcast to YouTube, Facebook, LinkedIn and custom platforms. Full AV setup with professional crew.',
-    features:['Multi-cam Setup','Real-time Broadcast','Recording & Edit','Highlight Reels'] },
+  { id: 'videography-photography', img: '/assets/videography.png', icon: <Camera size={32} strokeWidth={1.5} />, title:'Videography & Photography',
+    desc:'Professional visual storytelling for your events. High-end cinematic videography and candid photography to capture every important moment in stunning detail.',
+    features:['Event Videography','Cinematic Editing','Portrait & Candid','Fast Turnaround'] },
+  { id: 'event-hosting', img: '/assets/hosting.png', icon: <Mic2 size={32} strokeWidth={1.5} />, title:'Professional Event Hosting',
+    desc:'Expert MCs and hosts to lead your event with high energy and professionalism. We ensure smooth transitions and keep your audience fully engaged.',
+    features:['Professional MCs','Stage Hosting','Interactive Q&A','Scripting & Prep'] },
   { id: 'event-promotion', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop', icon: <Megaphone size={32} strokeWidth={1.5} />, title:'Event Promotion & Marketing',
     desc:'Pre-event buzz campaigns, ticket campaigns, email sequences, influencer seeding, and post-event content to maximise attendance and reach.',
     features:['Social Campaigns','Email Marketing','Influencer Outreach','Press & PR'] },
@@ -80,7 +84,9 @@ export default function Events({ theme: t }) {
           <div className="stats-grid" style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:1, background:t.border, borderRadius:20, overflow:'hidden' }}>
             {NUMBERS.map(({ n, label }) => (
               <div key={label} style={{ background:t.bgCard, padding:'clamp(24px, 5vw, 36px) 16px', textAlign:'center' }}>
-                <div className="g-text font-display" style={{ backgroundImage:t.grad, fontSize:'clamp(1.6rem,4vw,2.8rem)', fontWeight:900, lineHeight:1 }}>{n}</div>
+                <div className="g-text font-display" style={{ backgroundImage:t.grad, fontSize:'clamp(1.6rem,4vw,2.8rem)', fontWeight:900, lineHeight:1 }}>
+                  <CountUp end={n} />
+                </div>
                 <div style={{ fontSize:12, color:t.textMuted, marginTop:8, textTransform: 'uppercase', fontWeight: 600, letterSpacing: '.05em' }}>{label}</div>
               </div>
             ))}
@@ -103,7 +109,7 @@ export default function Events({ theme: t }) {
                   ))}
                 </div>
               </div>
-              <div style={{ flex: '1 1 300px', height: 'clamp(280px, 40vw, 400px)', borderRadius: 28, overflow: 'hidden', boxShadow: t.shadow, border: `1px solid ${t.border}` }}>
+              <div style={{ flex: '1 1 300px', maxWidth: '600px', width: '100%', aspectRatio: '16 / 10', borderRadius: 28, overflow: 'hidden', boxShadow: t.shadow, border: `1px solid ${t.border}` }}>
                 <img src={img} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             </AnimatedReveal>

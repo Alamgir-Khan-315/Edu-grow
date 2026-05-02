@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
 import { Smartphone, Calendar, TrendingUp, Target, Star, Rocket } from 'lucide-react'
+import CountUp from '../components/CountUp'
 
 const STATS = [
   { n:'500+', label:'Happy Clients' },
@@ -11,7 +12,7 @@ const STATS = [
 
 const HIGHLIGHTS = [
   { icon: <Smartphone size={28} strokeWidth={1.5} />, title:'Social Media',  desc:'Full platform management — Instagram, TikTok, LinkedIn, X, YouTube. We handle posting, engagement and growth.', to:'/services' },
-  { icon: <Calendar size={28} strokeWidth={1.5} />, title:'Event Services', desc:'End-to-end event planning, live streaming, promotion and virtual event production.', to:'/events' },
+  { icon: <Calendar size={28} strokeWidth={1.5} />, title:'Event Services', desc:'End-to-end event planning, videography, photography and professional hosting services.', to:'/events' },
   { icon: <TrendingUp size={28} strokeWidth={1.5} />, title:'Analytics',     desc:'Real-time reporting dashboards and monthly deep-dives to keep you ahead of the data.', to:'/services' },
   { icon: <Target size={28} strokeWidth={1.5} />, title:'Paid Ads',      desc:'High-ROAS campaigns across Meta, TikTok, Google and YouTube — setup to scale.', to:'/services' },
 ]
@@ -80,7 +81,9 @@ export default function Home({ theme: t }) {
           }}>
             {STATS.map(({ n, label }) => (
               <div key={label} style={{ textAlign:'center' }}>
-                <div className="g-text font-display" style={{ backgroundImage:t.grad, fontSize:'clamp(1.5rem, 5vw, 2.8rem)', fontWeight:900, lineHeight:1 }}>{n}</div>
+                <div className="g-text font-display" style={{ backgroundImage:t.grad, fontSize:'clamp(1.5rem, 5vw, 2.8rem)', fontWeight:900, lineHeight:1 }}>
+                  <CountUp end={n} />
+                </div>
                 <div style={{ fontSize:11, color:t.textMuted, marginTop:6, letterSpacing:'.03em', textTransform: 'uppercase', fontWeight: 700 }}>{label}</div>
               </div>
             ))}

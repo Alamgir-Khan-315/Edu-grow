@@ -10,9 +10,8 @@ const COLS = {
   ],
   'Events': [
     { label: 'Event Planning', to: '/events' },
-    { label: 'Live Streaming', to: '/events' },
-    { label: 'Event Promotion', to: '/events' },
-    { label: 'Virtual Events', to: '/events' },
+    { label: 'Videography & Photography', to: '/events' },
+    { label: 'Event Hosting', to: '/events' },
   ],
   'Company': [
     { label: 'Our Process', to: '/process' },

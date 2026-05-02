@@ -22,7 +22,8 @@ const NAV = [
   {
     label: 'Events', to: '/events', dropdown: [
       { label: 'Event Planning', to: '/events#event-planning' },
-      { label: 'Live Streaming', to: '/events#live-streaming' },
+      { label: 'Videography & Photography', to: '/events#videography-photography' },
+      { label: 'Event Hosting', to: '/events#event-hosting' },
       { label: 'Event Promotion', to: '/events#event-promotion' },
       { label: 'Virtual Events', to: '/events#virtual-events' },
     ]

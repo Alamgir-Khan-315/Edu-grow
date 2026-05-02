@@ -9,6 +9,7 @@ import Events from './pages/Events'
 import Process from './pages/Process'
 import Contact from './pages/Contact'
 import ScrollToTop from './components/ScrollToTop'
+import WhatsAppButton from './components/WhatsAppButton'
 
 export default function App() {
   const [activeTheme, setActiveTheme] = useState('light')
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/contact" element={<Contact theme={theme} />} />
         </Routes>
         <Footer theme={theme} />
+        <WhatsAppButton theme={theme} />
       </div>
     </BrowserRouter>
   )
