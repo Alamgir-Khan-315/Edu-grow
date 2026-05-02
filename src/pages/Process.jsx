@@ -63,13 +63,13 @@ export default function Process({ theme: t }) {
         <AnimatedReveal className="wrap">
           <div style={{ display:'flex', flexDirection:'column', gap:20 }}>
             {STEPS.map(({ n, icon, title, time, desc, deliverable }, i) => (
-              <div key={n} className="card card-shine" style={{ background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:22, padding:'36px 40px', display:'flex', alignItems:'flex-start', gap:32 }}
+              <div key={n} className="card card-shine flex-res" style={{ background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:22, padding:'clamp(24px, 5vw, 40px)', display:'flex', alignItems:'flex-start', gap:'clamp(20px, 4vw, 32px)', position: 'relative' }}
                 onMouseEnter={e=>{ e.currentTarget.style.borderColor=`rgba(${t.rgb},.5)`; e.currentTarget.style.boxShadow=t.shadow }}
                 onMouseLeave={e=>{ e.currentTarget.style.borderColor=t.border; e.currentTarget.style.boxShadow='none' }}
               >
                 {/* Step num */}
                 <div style={{ flexShrink:0 }}>
-                  <div style={{ width:64,height:64,borderRadius:20,background:`rgba(${t.rgb},.12)`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:30 }}>{icon}</div>
+                  <div style={{ width:60,height:60,borderRadius:18,background:`rgba(${t.rgb},.12)`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:26, color: t.accent }}>{icon}</div>
                 </div>
 
                 {/* Content */}
@@ -88,7 +88,7 @@ export default function Process({ theme: t }) {
                 </div>
 
                 {/* Number */}
-                <div style={{ flexShrink:0, fontSize:'clamp(3rem,5vw,5rem)', fontWeight:900, lineHeight:1, opacity:.06, color:t.textHeading, fontFamily:'Syne,sans-serif', userSelect:'none' }}>{n}</div>
+                <div style={{ position: 'absolute', top: 20, right: 24, fontSize:'clamp(2.5rem,5vw,5rem)', fontWeight:900, lineHeight:1, opacity:.05, color:t.textHeading, fontFamily:'Syne,sans-serif', userSelect:'none', pointerEvents: 'none' }}>{n}</div>
               </div>
             ))}
           </div>

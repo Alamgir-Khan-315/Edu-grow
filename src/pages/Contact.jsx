@@ -102,7 +102,7 @@ export default function Contact({ theme: t }) {
               {/* Social */}
               <div style={{ marginTop: 28 }}>
                 <p style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: t.textMuted, marginBottom: 14 }}>Follow Us</p>
-                <div style={{ display: 'flex', gap: 10 }}>
+                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                   {['𝕏', 'LinkedIn', 'Instagram', 'TikTok', 'YouTube'].map(s => (
                     <button key={s} style={{ padding: '8px 14px', borderRadius: 99, border: `1px solid ${t.border}`, background: `rgba(${t.rgb},.08)`, color: t.text, cursor: 'pointer', fontSize: 12, fontWeight: 600, transition: 'all .2s' }}
                       onMouseEnter={e => { e.currentTarget.style.borderColor = t.accent; e.currentTarget.style.color = t.accent; e.currentTarget.style.background = `rgba(${t.rgb},.16)` }}
@@ -114,7 +114,7 @@ export default function Contact({ theme: t }) {
             </div>
 
             {/* Right — form */}
-            <div style={{ background: t.bgCard, border: `1px solid ${t.border}`, borderRadius: 24, padding: '40px 36px' }}>
+            <div style={{ background: t.bgCard, border: `1px solid ${t.border}`, borderRadius: 24, padding: 'clamp(24px, 5vw, 40px) clamp(20px, 4vw, 36px)' }}>
               {sent ? (
                 <div style={{ textAlign: 'center', padding: '40px 0' }}>
                   <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20, color: t.accent }}><PartyPopper size={56} /></div>

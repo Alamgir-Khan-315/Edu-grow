@@ -59,8 +59,8 @@ export default function Services({ theme: t }) {
       <div>
         {SERVICES.map(({ id, img, icon, title, desc, tags }, i) => (
           <section key={id} id={id} className="sec" style={{ background: i % 2 === 0 ? t.bgSection : t.bg, scrollMarginTop: '80px' }}>
-            <AnimatedReveal className="wrap" style={{ display: 'flex', flexDirection: i % 2 === 0 ? 'row' : 'row-reverse', alignItems: 'center', gap: 60, flexWrap: 'wrap' }}>
-              <div style={{ flex: '1 1 400px' }}>
+            <AnimatedReveal className="wrap flex-res" style={{ display: 'flex', flexDirection: i % 2 === 0 ? 'row' : 'row-reverse', alignItems: 'center', gap: 'clamp(32px, 5vw, 60px)' }}>
+              <div style={{ flex: '1 1 300px' }}>
                 <div style={{ width: 64, height: 64, borderRadius: 20, background: `rgba(${t.rgb},.12)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32, marginBottom: 24 }}>{icon}</div>
                 <h2 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 32, color: t.textHeading, marginBottom: 16 }}>{title}</h2>
                 <p style={{ fontSize: 17, lineHeight: 1.8, color: t.text, marginBottom: 24 }}>{desc}</p>
@@ -70,7 +70,7 @@ export default function Services({ theme: t }) {
                   ))}
                 </div>
               </div>
-              <div style={{ flex: '1 1 400px', height: 400, borderRadius: 32, overflow: 'hidden', boxShadow: t.shadow, border: `1px solid ${t.border}` }}>
+              <div style={{ flex: '1 1 300px', height: 'clamp(280px, 40vw, 400px)', borderRadius: 28, overflow: 'hidden', boxShadow: t.shadow, border: `1px solid ${t.border}` }}>
                 <img src={img} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             </AnimatedReveal>

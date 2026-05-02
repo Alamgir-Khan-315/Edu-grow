@@ -77,11 +77,11 @@ export default function Events({ theme: t }) {
       {/* ── EVENT NUMBERS ── */}
       <section style={{ background:t.bgSection, padding:'56px 0' }}>
         <AnimatedReveal className="wrap">
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:1, background:t.border, borderRadius:20, overflow:'hidden' }}>
+          <div className="stats-grid" style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:1, background:t.border, borderRadius:20, overflow:'hidden' }}>
             {NUMBERS.map(({ n, label }) => (
-              <div key={label} style={{ background:t.bgCard, padding:'36px 24px', textAlign:'center' }}>
-                <div className="g-text font-display" style={{ backgroundImage:t.grad, fontSize:'clamp(2rem,3.5vw,3rem)', fontWeight:900, lineHeight:1 }}>{n}</div>
-                <div style={{ fontSize:13, color:t.textMuted, marginTop:8 }}>{label}</div>
+              <div key={label} style={{ background:t.bgCard, padding:'clamp(24px, 5vw, 36px) 16px', textAlign:'center' }}>
+                <div className="g-text font-display" style={{ backgroundImage:t.grad, fontSize:'clamp(1.6rem,4vw,2.8rem)', fontWeight:900, lineHeight:1 }}>{n}</div>
+                <div style={{ fontSize:12, color:t.textMuted, marginTop:8, textTransform: 'uppercase', fontWeight: 600, letterSpacing: '.05em' }}>{label}</div>
               </div>
             ))}
           </div>
@@ -92,8 +92,8 @@ export default function Events({ theme: t }) {
       <div>
         {EVENTS.map(({ id, img, icon, title, desc, features }, i) => (
           <section key={id} id={id} className="sec" style={{ background: i % 2 === 0 ? t.bg : t.bgSection, scrollMarginTop: '80px' }}>
-            <AnimatedReveal className="wrap" style={{ display: 'flex', flexDirection: i % 2 === 0 ? 'row' : 'row-reverse', alignItems: 'center', gap: 60, flexWrap: 'wrap' }}>
-              <div style={{ flex: '1 1 400px' }}>
+            <AnimatedReveal className="wrap flex-res" style={{ display: 'flex', flexDirection: i % 2 === 0 ? 'row' : 'row-reverse', alignItems: 'center', gap: 'clamp(32px, 5vw, 60px)' }}>
+              <div style={{ flex: '1 1 300px' }}>
                 <div style={{ width: 64, height: 64, borderRadius: 20, background: `rgba(${t.rgb},.12)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32, marginBottom: 24 }}>{icon}</div>
                 <h2 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 32, color: t.textHeading, marginBottom: 16 }}>{title}</h2>
                 <p style={{ fontSize: 17, lineHeight: 1.8, color: t.text, marginBottom: 24 }}>{desc}</p>
@@ -103,7 +103,7 @@ export default function Events({ theme: t }) {
                   ))}
                 </div>
               </div>
-              <div style={{ flex: '1 1 400px', height: 400, borderRadius: 32, overflow: 'hidden', boxShadow: t.shadow, border: `1px solid ${t.border}` }}>
+              <div style={{ flex: '1 1 300px', height: 'clamp(280px, 40vw, 400px)', borderRadius: 28, overflow: 'hidden', boxShadow: t.shadow, border: `1px solid ${t.border}` }}>
                 <img src={img} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             </AnimatedReveal>
@@ -169,9 +169,9 @@ export default function Events({ theme: t }) {
       </section>
 
       {/* ── CTA ── */}
-      <section className="sec-sm" style={{ background:t.bg }}>
+      <section className="sec-sm" style={{ background: t.bg }}>
         <AnimatedReveal className="wrap">
-          <div style={{ background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:28, padding:'72px 48px', textAlign:'center', position:'relative', overflow:'hidden' }}>
+          <div style={{ background: t.bgCard, border: `1px solid ${t.border}`, borderRadius: 28, padding: 'clamp(40px, 8vw, 72px) clamp(24px, 6vw, 48px)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
             <div className="blob" style={{ width:400,height:400,background:`radial-gradient(circle,rgba(${t.rgb},.16),transparent 70%)`,top:-80,left:'50%',transform:'translateX(-50%)',pointerEvents:'none' }} />
             <div style={{ position:'relative', zIndex:1 }}>
               <h2 className="sec-h font-display" style={{ color:t.textHeading, marginBottom:16 }}>

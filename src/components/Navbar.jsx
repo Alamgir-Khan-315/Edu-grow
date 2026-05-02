@@ -64,7 +64,7 @@ export default function Navbar({ theme: t, themeList, activeTheme, setActiveThem
 
           {/* ── Logo ── */}
           <Link to="/" onClick={() => setOpen(false)} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-            <div style={{ width: 150, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <div style={{ width: 'clamp(100px, 15vw, 150px)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <img src="/Logo/PM-removebg-preview.png" alt="Logo" style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
             </div>
             {/* <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 22, color: t.textHeading }}>
@@ -115,7 +115,7 @@ export default function Navbar({ theme: t, themeList, activeTheme, setActiveThem
           </div>
 
           {/* ── Right side controls ── */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(6px, 2vw, 12px)' }}>
             {/* Theme switcher */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 3, background: `rgba(${t.rgb},.08)`, border: `1px solid ${t.border}`, borderRadius: 99, padding: '3px 5px' }}>
               {themeList.map(th => (

@@ -70,11 +70,18 @@ export default function Home({ theme: t }) {
           </div>
 
           {/* Stats bar */}
-          <div className="anim-up4" style={{ display:'flex', justifyContent:'center', gap:64, flexWrap:'wrap', marginTop:80, paddingTop:48, borderTop:`1px solid ${t.border}` }}>
+          <div className="anim-up4 stats-grid" style={{ 
+            display:'grid', 
+            gridTemplateColumns: 'repeat(4, 1fr)', 
+            gap:'clamp(16px, 4vw, 48px)', 
+            marginTop:80, 
+            paddingTop:48, 
+            borderTop:`1px solid ${t.border}` 
+          }}>
             {STATS.map(({ n, label }) => (
               <div key={label} style={{ textAlign:'center' }}>
-                <div className="g-text font-display" style={{ backgroundImage:t.grad, fontSize:'clamp(2rem,4vw,3rem)', fontWeight:900, lineHeight:1 }}>{n}</div>
-                <div style={{ fontSize:13, color:t.textMuted, marginTop:6, letterSpacing:'.03em' }}>{label}</div>
+                <div className="g-text font-display" style={{ backgroundImage:t.grad, fontSize:'clamp(1.5rem, 5vw, 2.8rem)', fontWeight:900, lineHeight:1 }}>{n}</div>
+                <div style={{ fontSize:11, color:t.textMuted, marginTop:6, letterSpacing:'.03em', textTransform: 'uppercase', fontWeight: 700 }}>{label}</div>
               </div>
             ))}
           </div>
@@ -89,7 +96,7 @@ export default function Home({ theme: t }) {
             <h2 className="sec-h font-display" style={{ color:t.textHeading }}>Everything You Need to <span className="g-text" style={{ backgroundImage:t.grad }}>Dominate</span></h2>
             <p style={{ color:t.text, marginTop:12, fontSize:16, maxWidth:520, margin:'12px auto 0' }}>One agency. Full stack. Zero gaps.</p>
           </div>
-          <div className="grid-2" style={{ gridTemplateColumns:'repeat(2,1fr)' }}>
+          <div className="grid-2">
             {HIGHLIGHTS.map(({ icon, title, desc, to }) => (
               <Link key={title} to={to} style={{ textDecoration:'none' }}>
                 <div className="card card-shine" style={{ background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:20, padding:'36px 32px', height:'100%' }}
@@ -140,7 +147,7 @@ export default function Home({ theme: t }) {
       {/* ── CTA BAND ── */}
       <section className="sec-sm" style={{ background:t.bgSection }}>
         <AnimatedReveal className="wrap">
-          <div style={{ background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:28, padding:'72px 48px', textAlign:'center', position:'relative', overflow:'hidden' }}>
+          <div style={{ background:t.bgCard, border:`1px solid ${t.border}`, borderRadius:28, padding:'clamp(40px, 8vw, 72px) clamp(24px, 6vw, 48px)', textAlign:'center', position:'relative', overflow:'hidden' }}>
             <div className="blob" style={{ width:400, height:400, background:`radial-gradient(circle,rgba(${t.rgb},.18),transparent 70%)`, top:-100, left:'50%', transform:'translateX(-50%)', pointerEvents:'none' }} />
             <div style={{ position:'relative', zIndex:1 }}>
               <h2 className="sec-h font-display" style={{ color:t.textHeading, marginBottom:16 }}>

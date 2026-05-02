@@ -117,9 +117,18 @@ body {
   .grid-3 { grid-template-columns: repeat(2,1fr); }
   .grid-4 { grid-template-columns: repeat(2,1fr); }
 }
+@media (max-width: 768px) {
+  .flex-res { flex-direction: column !important; }
+  .gap-res { gap: 24px !important; }
+}
 @media (max-width: 640px) {
   .grid-3, .grid-2, .grid-4 { grid-template-columns: 1fr; }
-  .sec { padding: 72px 0; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .footer-bottom { justify-content: center !important; text-align: center !important; }
+  .footer-bottom > div { justify-content: center !important; flex-wrap: wrap; }
+  .sec { padding: 64px 0; }
+  .sec-sm { padding: 48px 0; }
+  .wrap { padding: 0 20px; }
 }
 
 /* ── Scroll reveal ── */

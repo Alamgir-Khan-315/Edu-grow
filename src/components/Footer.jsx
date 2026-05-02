@@ -35,8 +35,9 @@ export default function Footer({ theme: t }) {
           {/* Brand */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <div style={{ width: 38, height: 38, borderRadius: 12, background: t.grad, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, color: '#fff', fontSize: 18 }}>E</div>
-              <span style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 22, color: t.textHeading }}>Edugrow<span style={{ color: a }}>.</span></span>
+              <div style={{ width: 140, display: 'flex', alignItems: 'center' }}>
+                <img src="/Logo/PM-removebg-preview.png" alt="Logo" style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
+              </div>
             </div>
             <p style={{ fontSize: 14, lineHeight: 1.8, color: t.text, maxWidth: 260, marginBottom: 20 }}>
               Your full-service social media &amp; events agency. We turn brands into communities and events into experiences.
@@ -69,7 +70,7 @@ export default function Footer({ theme: t }) {
         </div>
 
         {/* Bottom bar */}
-        <div style={{ borderTop: `1px solid ${t.border}`, paddingTop: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+        <div className="footer-bottom" style={{ borderTop: `1px solid ${t.border}`, paddingTop: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
           <span style={{ fontSize: 13, color: t.textMuted }}>© 2026 Edugrow Agency. All rights reserved.</span>
           <div style={{ display: 'flex', gap: 24 }}>
             {['Privacy Policy', 'Terms of Service', 'Cookies'].map(l => (
