@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
-import { Mail, Phone, MapPin, Clock, PartyPopper, Plus, Send, MessageCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, PartyPopper, Plus, Send, WhatsApp } from 'lucide-react'
 
 const FAQS = [
   { q: 'How quickly can you start?', a: 'We can onboard new clients within 3–5 business days. For events, we recommend reaching out at least 4 weeks before your event date.' },
@@ -87,7 +87,7 @@ export default function Contact({ theme: t }) {
               {[
                 { icon: <Mail size={22} />, label: 'Email Us', val: 'jahangeerk1998@gmail.com' },
                 { icon: <Phone size={22} />, label: 'Call Us', val: '03376062635' },
-                { icon: <MessageCircle size={22} />, label: 'Whatsapp', val: '03144085533' },
+                { icon: <WhatsApp size={22} />, label: 'Whatsapp', val: '03144085533' },
                 { icon: <MapPin size={22} />, label: 'Office', val: 'Gulshan e Iqbal Karachi Pakistan.' },
                 { icon: <Clock size={22} />, label: 'Working Hours', val: 'Mon–Fri · 9:00 AM – 6:00 PM EST' },
               ].map(({ icon, label, val }, i) => (
