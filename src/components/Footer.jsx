@@ -20,7 +20,7 @@ const COLS = {
   ],
 }
 
-const SOCIALS = ['𝕏', 'in', '▶', '📘', '📸']
+const SOCIALS = ['in', '▶', '📘', '📸']
 
 export default function Footer({ theme: t }) {
   const a = t.accent

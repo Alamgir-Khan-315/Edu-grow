@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
-import { Mail, Phone, MapPin, Clock, PartyPopper, Plus, Send, WhatsApp } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, PartyPopper, Plus, Send } from 'lucide-react'
+import { FaWhatsapp } from 'react-icons/fa';
 
 const FAQS = [
   { q: 'How quickly can you start?', a: 'We can onboard new clients within 3–5 business days. For events, we recommend reaching out at least 4 weeks before your event date.' },
@@ -87,7 +88,7 @@ export default function Contact({ theme: t }) {
               {[
                 { icon: <Mail size={22} />, label: 'Email Us', val: 'jahangeerk1998@gmail.com' },
                 { icon: <Phone size={22} />, label: 'Call Us', val: '03376062635' },
-                { icon: <WhatsApp size={22} />, label: 'Whatsapp', val: '03144085533' },
+                { icon: <FaWhatsapp size={22} />, label: 'Whatsapp', val: '03144085533' },
                 { icon: <MapPin size={22} />, label: 'Office', val: 'Gulshan e Iqbal Karachi Pakistan.' },
                 { icon: <Clock size={22} />, label: 'Working Hours', val: 'Mon–Fri · 9:00 AM – 6:00 PM EST' },
               ].map(({ icon, label, val }, i) => (
@@ -155,7 +156,7 @@ export default function Contact({ theme: t }) {
                       <label style={{ fontSize: 12, fontWeight: 600, color: t.textMuted, display: 'block', marginBottom: 6 }}>Monthly Budget</label>
                       <select name="budget" value={form.budget} onChange={handle} onFocus={focus} onBlur={blur} style={{ ...inp, appearance: 'none' }}>
                         <option value="">Select budget...</option>
-                        {['Under $1K', '$1K–$3K', '$3K–$5K', '$5K–$10K', '$10K+'].map(b => <option key={b} value={b}>{b}</option>)}
+                        {['Under PKR 30K - PKR 50K', 'PKR 50K–PKR 60K', 'PKR 70K –PKR 75K', 'Under PKR 100K', 'PKR 100K+'].map(b => <option key={b} value={b}>{b}</option>)}
                       </select>
                     </div>
                   </div>

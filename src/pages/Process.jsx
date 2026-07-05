@@ -124,7 +124,7 @@ export default function Process({ theme: t }) {
             Ready to Start <span className="g-text" style={{ backgroundImage:t.grad }}>Step One?</span>
           </h2>
           <p style={{ fontSize:16, color:t.text, marginBottom:32 }}>Book your free discovery call — we'll show you exactly how we'd approach your brand.</p>
-          <Link to="/contact" className="btn btn-lg" style={{ background:t.grad, color:'#fff', boxShadow:t.shadow, display: 'inline-flex', alignItems: 'center', gap: 8 }}>Book Discovery Call <Rocket size={18} /></Link>
+          <a href="tel:03376062635" className="btn btn-lg" style={{ background:t.grad, color:'#fff', boxShadow:t.shadow, display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration:'none' }}>Book Discovery Call <Rocket size={18} /></a>
         </AnimatedReveal>
       </section>
     </main>
