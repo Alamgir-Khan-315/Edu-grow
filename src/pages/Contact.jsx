@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
-import { Mail, Phone, MapPin, Clock, PartyPopper, Plus, Send } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, PartyPopper, Plus, Send, Star, ShieldCheck, GraduationCap, Timer } from 'lucide-react'
 import { FaWhatsapp, FaXTwitter, FaLinkedinIn, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa6';
 
 const SOCIAL_LINKS = [
@@ -21,6 +21,14 @@ const FAQS = [
 ]
 
 const SERVICES_CONTACT = ['Social Media Management', 'Content Creation', 'Paid Advertising', 'Influencer Marketing', 'Analytics & Reporting', 'Event Planning', 'Live Streaming', 'Event Promotion', 'Virtual Events', 'Brand Strategy']
+
+const TRUST_BADGES = [
+  { icon: <GraduationCap size={20} />, label: '10+ Schools Served' },
+  { icon: <Star size={20} />, label: '5.0 Average Rating' },
+  { icon: <ShieldCheck size={20} />, label: '100% Content Ownership' },
+  { icon: <Timer size={20} />, label: '24-Hour Response Time' },
+]
+
 
 function Badge({ t, children }) {
   return <span className="badge" style={{ background: `rgba(${t.rgb},.12)`, color: t.accent, border: `1px solid rgba(${t.rgb},.25)`, marginBottom: 20 }}><span style={{ width: 6, height: 6, borderRadius: '50%', background: t.accent, display: 'inline-block' }} />{children}</span>
@@ -119,11 +127,21 @@ export default function Contact({ theme: t }) {
           <p style={{ fontSize: 17, color: t.text, maxWidth: 500, margin: '0 auto', lineHeight: 1.75 }}>
             Tell us about your project. We'll get back to you within 24 hours with a tailored proposal.
           </p>
+
+          {/* Trust badges */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 12, marginTop: 40 }}>
+            {TRUST_BADGES.map(({ icon, label }) => (
+              <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 9, padding: '10px 18px', borderRadius: 99, background: t.bgCard, border: `1px solid ${t.border}`, color: t.accent }}>
+                {icon}
+                <span style={{ fontSize: 13, fontWeight: 600, color: t.textHeading }}>{label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── MAIN CONTACT SECTION ── */}
-      <section className="sec" style={{ background: t.bgSection }}>
+      <section style={{ background: t.bgSection, padding: '56px 0 64px' }}>
         <AnimatedReveal className="wrap">
           <div className="contact-grid">
 
@@ -232,6 +250,26 @@ export default function Contact({ theme: t }) {
                 </form>
               )}
             </div>
+          </div>
+        </AnimatedReveal>
+      </section>
+
+      {/* ── FIND US ── */}
+      <section style={{ background: t.bgSection, padding: '0 0 64px' }}>
+        <AnimatedReveal className="wrap">
+          <div style={{ textAlign: 'center', marginBottom: 24 }}>
+            <Badge t={t}>Our Office</Badge>
+            <h2 className="sec-h font-display" style={{ color: t.textHeading, fontSize: 'clamp(1.6rem,3vw,2.2rem)' }}>Find Us in <span className="g-text" style={{ backgroundImage: t.grad }}>Karachi</span></h2>
+          </div>
+          <div style={{ borderRadius: 20, overflow: 'hidden', border: `1px solid ${t.border}`, boxShadow: t.shadow }}>
+            <iframe
+              title="EduGrow Digital office location — Gulshan-e-Iqbal, Karachi"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=67.0675%2C24.9007%2C67.1275%2C24.9407&layer=mapnik&marker=24.9207%2C67.0975"
+              width="100%"
+              height="340"
+              style={{ border: 0, display: 'block', filter: t.dark ? 'invert(0.92) hue-rotate(180deg)' : 'none' }}
+              loading="lazy"
+            />
           </div>
         </AnimatedReveal>
       </section>
