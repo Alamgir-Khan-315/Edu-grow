@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
 import { Mail, Phone, MapPin, Clock, PartyPopper, Plus, Send } from 'lucide-react'
@@ -41,8 +41,20 @@ function FaqItem({ q, a, t }) {
   )
 }
 
+const mapPriceToBudget = (price) => {
+  if (!price) return ''
+  const num = parseInt(price.replace(/,/g, ''), 10)
+  if (isNaN(num)) return ''
+  if (num <= 50000) return 'Under PKR 30K - PKR 50K'
+  if (num <= 65000) return 'PKR 50K–PKR 60K'
+  if (num <= 75000) return 'PKR 70K –PKR 75K'
+  if (num <= 100000) return 'Under PKR 100K'
+  return 'PKR 100K+'
+}
+
 export default function Contact({ theme: t }) {
   const { state: routeState } = useLocation()
+  const formRef = useRef(null)
 
   // Pre-fill when arriving from a plan card
   const planNote = routeState?.planName
@@ -54,10 +66,23 @@ export default function Contact({ theme: t }) {
     email: '',
     company: '',
     service: routeState?.planName ? routeState.planName : '',
-    budget: '',
+    budget: routeState?.planPrice ? mapPriceToBudget(routeState.planPrice) : '',
     message: planNote,
   })
+
+  useEffect(() => {
+    if (routeState?.planName && formRef.current) {
+      setTimeout(() => {
+        formRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }, 100)
+    }
+  }, [routeState])
+
   const [sent, setSent] = useState(false)
+  const serviceOptions = [...SERVICES_CONTACT]
+  if (routeState?.planName && !serviceOptions.includes(routeState.planName)) {
+    serviceOptions.unshift(routeState.planName)
+  }
 
   const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
   const submit = e => {
@@ -141,7 +166,7 @@ export default function Contact({ theme: t }) {
             </div>
 
             {/* Right — form */}
-            <div style={{ background: t.bgCard, border: `1px solid ${t.border}`, borderRadius: 24, padding: 'clamp(24px, 5vw, 40px) clamp(20px, 4vw, 36px)' }}>
+            <div id="contact-form" ref={formRef} style={{ background: t.bgCard, border: `1px solid ${t.border}`, borderRadius: 24, padding: 'clamp(24px, 5vw, 40px) clamp(20px, 4vw, 36px)' }}>
               {sent ? (
                 <div style={{ textAlign: 'center', padding: '40px 0' }}>
                   <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20, color: t.accent }}><PartyPopper size={56} /></div>
@@ -184,7 +209,7 @@ export default function Contact({ theme: t }) {
                       <label style={{ fontSize: 12, fontWeight: 600, color: t.textMuted, display: 'block', marginBottom: 6 }}>Service Needed</label>
                       <select name="service" value={form.service} onChange={handle} onFocus={focus} onBlur={blur} style={{ ...inp, appearance: 'none' }}>
                         <option value="">Select service...</option>
-                        {SERVICES_CONTACT.map(s => <option key={s} value={s}>{s}</option>)}
+                        {serviceOptions.map(s => <option key={s} value={s}>{s}</option>)}
                       </select>
                     </div>
                     <div>

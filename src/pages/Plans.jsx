@@ -143,7 +143,7 @@ function PlanCard({ t, plan }) {
   const navigate = useNavigate()
 
   const handleChoose = () => {
-    navigate('/contact', {
+    navigate('/contact#contact-form', {
       state: {
         planName: name,
         planTag: tag,
@@ -154,21 +154,20 @@ function PlanCard({ t, plan }) {
   }
 
   return (
-      <div
+    <div
       className="card card-shine plan-card"
       style={{
         '--card-accent': t.accent,
         '--card-shadow': t.shadow,
+        '--card-border': popular ? t.accent : t.border,
+        '--card-glow': popular ? t.glow : 'none',
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
         background: t.bgCard,
-        border: `1.5px solid ${popular ? t.accent : t.border}`,
         borderRadius: 24,
         padding: popular ? '0 clamp(28px, 4vw, 36px) clamp(28px, 4vw, 36px)' : 'clamp(28px, 4vw, 36px)',
-        boxShadow: popular ? t.glow : 'none',
-        overflow: 'visible',
       }}
     >
       {/* Badge lives IN the card flow — centred using flex, no position:absolute so it never clips */}
@@ -185,49 +184,54 @@ function PlanCard({ t, plan }) {
         </div>
       )}
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 18 }}>
-          <div style={{ width: 52, height: 52, borderRadius: 16, background: `rgba(${t.rgb},.12)`, color: t.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{icon}</div>
-          <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: t.textMuted }}>{tag}</span>
-        </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 18 }}>
+        <div style={{ width: 52, height: 52, borderRadius: 16, background: `rgba(${t.rgb},.12)`, color: t.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{icon}</div>
+        <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: t.textMuted }}>{tag}</span>
+      </div>
 
-        <h3 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 22, color: t.textHeading, marginBottom: 8, lineHeight: 1.2 }}>{name}</h3>
-        <p style={{ fontSize: 14, lineHeight: 1.7, color: t.text, marginBottom: 22 }}>{blurb}</p>
+      <h3 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 22, color: t.textHeading, marginBottom: 8, lineHeight: 1.2 }}>{name}</h3>
+      <p style={{ fontSize: 14, lineHeight: 1.7, color: t.text, marginBottom: 22 }}>{blurb}</p>
 
-        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6, marginBottom: 24 }}>
-          <span style={{ fontSize: 15, fontWeight: 700, color: t.textMuted, marginBottom: 6 }}>PKR</span>
-          <span className="g-text font-display" style={{ backgroundImage: t.grad, fontSize: 'clamp(2rem, 5vw, 2.6rem)', fontWeight: 900, lineHeight: 1 }}>{price}</span>
-          <span style={{ fontSize: 14, color: t.textMuted, marginBottom: 6 }}>{period}</span>
-        </div>
+      <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6, marginBottom: 24 }}>
+        <span style={{ fontSize: 15, fontWeight: 700, color: t.textMuted, marginBottom: 6 }}>PKR</span>
+        <span className="g-text font-display" style={{ backgroundImage: t.grad, fontSize: 'clamp(2rem, 5vw, 2.6rem)', fontWeight: 900, lineHeight: 1 }}>{price}</span>
+        <span style={{ fontSize: 14, color: t.textMuted, marginBottom: 6 }}>{period}</span>
+      </div>
 
-        <div style={{ height: 1, background: t.border, marginBottom: 22 }} />
+      <div style={{ height: 1, background: t.border, marginBottom: 22 }} />
 
-        <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
-          {features.map(f => (
-            <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, lineHeight: 1.6, color: t.text }}>
-              <span style={{ color: t.accent, flexShrink: 0, marginTop: 2, display: 'flex' }}><Check size={16} strokeWidth={2.5} /></span>
-              {f}
-            </li>
-          ))}
-        </ul>
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
+        {features.map(f => (
+          <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, lineHeight: 1.6, color: t.text }}>
+            <span style={{ color: t.accent, flexShrink: 0, marginTop: 2, display: 'flex' }}><Check size={16} strokeWidth={2.5} /></span>
+            {f}
+          </li>
+        ))}
+      </ul>
 
-        {note && (
-          <p style={{ fontSize: 12, color: t.textMuted, lineHeight: 1.6, marginTop: 18, fontStyle: 'italic' }}>{note}</p>
-        )}
+      {note && (
+        <p style={{ fontSize: 12, color: t.textMuted, lineHeight: 1.6, marginTop: 18, fontStyle: 'italic' }}>{note}</p>
+      )}
 
-        <button
-          onClick={handleChoose}
-          className="btn btn-md"
-          style={{
-            marginTop: 24, justifyContent: 'center', display: 'flex', width: '100%',
-            background: popular ? t.grad : 'transparent',
-            color: popular ? '#fff' : t.accent,
-            border: popular ? 'none' : `1.5px solid rgba(${t.rgb},.35)`,
-            boxShadow: popular ? t.shadow : 'none',
-            cursor: 'pointer',
-          }}
-        >
-          Choose {tag}
-        </button>
+      <button
+        onClick={handleChoose}
+        className="btn btn-md plan-btn"
+        style={{
+          marginTop: 24,
+          justifyContent: 'center',
+          display: 'flex',
+          width: '100%',
+          cursor: 'pointer',
+          '--btn-bg': popular ? t.grad : 'transparent',
+          '--btn-color': popular ? '#fff' : t.accent,
+          '--btn-border': popular ? 'transparent' : `rgba(${t.rgb},.35)`,
+          '--btn-bg-hover': popular ? t.grad : t.accent,
+          '--btn-color-hover': '#fff',
+          boxShadow: popular ? t.shadow : 'none',
+        }}
+      >
+        Choose {tag}
+      </button>
     </div>
   )
 }
@@ -290,7 +294,20 @@ export default function Plans({ theme: t }) {
           </div>
           <div className="grid-3">
             {TERMS.map(({ icon, title, desc }) => (
-              <div key={title} className="card plan-card" style={{ '--card-accent': `rgba(${t.rgb},.5)`, '--card-shadow': t.shadow, height: '100%', background: t.bgCard, border: `1px solid ${t.border}`, borderRadius: 20, padding: '28px 26px' }}>
+              <div
+                key={title}
+                className="card plan-card"
+                style={{
+                  '--card-accent': `rgba(${t.rgb},.5)`,
+                  '--card-shadow': t.shadow,
+                  '--card-border': t.border,
+                  '--card-glow': 'none',
+                  height: '100%',
+                  background: t.bgCard,
+                  borderRadius: 20,
+                  padding: '28px 26px'
+                }}
+              >
                 <div style={{ width: 46, height: 46, borderRadius: 14, background: `rgba(${t.rgb},.12)`, color: t.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>{icon}</div>
                 <h3 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 700, fontSize: 17, color: t.textHeading, marginBottom: 10 }}>{title}</h3>
                 <p style={{ fontSize: 14, lineHeight: 1.7, color: t.text }}>{desc}</p>

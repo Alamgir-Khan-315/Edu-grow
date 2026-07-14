@@ -202,11 +202,28 @@ body {
 
 /* ── Plan card hover — pure CSS so child elements never break the transition ── */
 .plan-card {
-  transition: border-color .25s ease, box-shadow .25s ease;
+  border: 1.5px solid var(--card-border) !important;
+  box-shadow: var(--card-glow) !important;
+  overflow: hidden;
+  transition: transform .35s cubic-bezier(.4,0,.2,1), border-color .25s ease, box-shadow .25s ease;
 }
 .plan-card:hover {
   border-color: var(--card-accent) !important;
   box-shadow: var(--card-shadow) !important;
+}
+
+/* ── Plan button hover — override inline styling dynamically via CSS variables ── */
+.plan-btn {
+  background: var(--btn-bg) !important;
+  color: var(--btn-color) !important;
+  border: 1.5px solid var(--btn-border) !important;
+  transition: transform .28s cubic-bezier(.4,0,.2,1), filter .28s ease, background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease !important;
+}
+.plan-btn:hover {
+  background: var(--btn-bg-hover) !important;
+  color: var(--btn-color-hover) !important;
+  border-color: var(--btn-bg-hover) !important;
+  box-shadow: 0 8px 24px rgba(14,105,190,0.18) !important;
 }
 
 /* ── Custom cursor ── */
