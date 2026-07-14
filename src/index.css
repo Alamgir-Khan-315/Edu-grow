@@ -200,6 +200,15 @@ body {
 .contact-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
 @media (max-width: 640px) { .contact-form-grid { grid-template-columns: 1fr; } }
 
+/* ── Plan card hover — pure CSS so child elements never break the transition ── */
+.plan-card {
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.plan-card:hover {
+  border-color: var(--card-accent) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
 /* ── Custom cursor ── */
 * { cursor: none !important; }
 @media (hover: none) and (pointer: coarse) {

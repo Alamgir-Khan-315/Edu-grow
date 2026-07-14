@@ -154,9 +154,11 @@ function PlanCard({ t, plan }) {
   }
 
   return (
-    <div
-      className="card card-shine"
+      <div
+      className="card card-shine plan-card"
       style={{
+        '--card-accent': t.accent,
+        '--card-shadow': t.shadow,
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
@@ -168,8 +170,6 @@ function PlanCard({ t, plan }) {
         boxShadow: popular ? t.glow : 'none',
         overflow: 'visible',
       }}
-      onMouseEnter={e => { e.currentTarget.style.borderColor = t.accent; e.currentTarget.style.boxShadow = t.shadow }}
-      onMouseLeave={e => { e.currentTarget.style.borderColor = popular ? t.accent : t.border; e.currentTarget.style.boxShadow = popular ? t.glow : 'none' }}
     >
       {/* Badge lives IN the card flow — centred using flex, no position:absolute so it never clips */}
       {popular && (
@@ -290,10 +290,7 @@ export default function Plans({ theme: t }) {
           </div>
           <div className="grid-3">
             {TERMS.map(({ icon, title, desc }) => (
-              <div key={title} className="card" style={{ height: '100%', background: t.bgCard, border: `1px solid ${t.border}`, borderRadius: 20, padding: '28px 26px' }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = `rgba(${t.rgb},.5)`; e.currentTarget.style.boxShadow = t.shadow }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = t.border; e.currentTarget.style.boxShadow = 'none' }}
-              >
+              <div key={title} className="card plan-card" style={{ '--card-accent': `rgba(${t.rgb},.5)`, '--card-shadow': t.shadow, height: '100%', background: t.bgCard, border: `1px solid ${t.border}`, borderRadius: 20, padding: '28px 26px' }}>
                 <div style={{ width: 46, height: 46, borderRadius: 14, background: `rgba(${t.rgb},.12)`, color: t.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>{icon}</div>
                 <h3 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 700, fontSize: 17, color: t.textHeading, marginBottom: 10 }}>{title}</h3>
                 <p style={{ fontSize: 14, lineHeight: 1.7, color: t.text }}>{desc}</p>

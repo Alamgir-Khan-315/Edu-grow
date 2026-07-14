@@ -14,17 +14,19 @@ const NAV = [
   {
     label: 'Services', to: '/services', dropdown: [
       { label: 'Social Media Management', to: '/services#social-media-management' },
-      { label: 'Content Creation', to: '/services#content-creation' },
-      { label: 'Analytics & Reporting', to: '/services#analytics-reporting' },
-      { label: 'Paid Advertising', to: '/services#paid-advertising' },
-      { label: 'Influencer Marketing', to: '/services#influencer-marketing' },
+      { label: 'Content Creation & Video Editing', to: '/services#content-creation' },
+      { label: 'Event Photography', to: '/services#event-photography' },
+      { label: 'Event Videography', to: '/services#event-videography' },
+      { label: 'Web Services & Development', to: '/services#web-services' },
+      { label: 'LMS & SaaS Projects', to: '/services#lms-saas' },
     ]
   },
   {
     label: 'Events', to: '/events', dropdown: [
       { label: 'Event Photography', to: '/events#photography' },
       { label: 'Event Videography', to: '/events#videography' },
-      { label: 'Web Services', to: '/events#web-services' },
+      { label: 'What We Cover', to: '/events#covers' },
+      { label: 'Portfolio', to: '/events#portfolio' },
     ]
   },
   { label: 'Process', to: '/process' },

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
-import { Smartphone, PenTool, BarChart3, BadgeDollarSign, Megaphone, Crosshair } from 'lucide-react'
+import { Smartphone, PenTool, BarChart3, BadgeDollarSign, Megaphone, Crosshair, Globe, Camera, Video, GraduationCap } from 'lucide-react'
 
 const SERVICES = [
   {
@@ -9,9 +9,29 @@ const SERVICES = [
     tags: ['Instagram', 'TikTok', 'LinkedIn', 'X']
   },
   {
-    id: 'content-creation', img: '/services/content-creation.png', icon: <PenTool size={32} strokeWidth={1.5} />, title: 'Content Creation',
-    desc: 'Scroll-stopping graphics, reels, carousels, and copy tailored to your brand voice. Our creative team produces 30+ pieces monthly.',
-    tags: ['Reels', 'Carousels', 'Copywriting', 'Design']
+    id: 'content-creation', img: '/services/content-creation.png', icon: <PenTool size={32} strokeWidth={1.5} />, title: 'Content Creation & Video Editing',
+    desc: 'Scroll-stopping graphics, reels, carousels, and professionally edited videos tailored to your brand voice. Our creative team produces 30+ pieces monthly.',
+    tags: ['Reels', 'Video Editing', 'Carousels', 'Design']
+  },
+  {
+    id: 'event-photography', img: '/services/event-photography.png', icon: <Camera size={32} strokeWidth={1.5} />, title: 'Event Photography',
+    desc: 'Professional event photography for school ceremonies, corporate functions, product launches, and conferences. High-resolution edited images delivered fast.',
+    tags: ['School Events', 'Corporate', 'Ceremonies', 'Product Launches']
+  },
+  {
+    id: 'event-videography', img: '/services/event-videography.png', icon: <Video size={32} strokeWidth={1.5} />, title: 'Event Videography',
+    desc: 'Cinematic event coverage with professional-grade equipment. Full event films, highlight reels, and social-ready cuts — all post-produced in-house.',
+    tags: ['Event Films', 'Highlight Reels', 'Drone', 'Social Cuts']
+  },
+  {
+    id: 'web-services', img: '/services/web-services.png', icon: <Globe size={32} strokeWidth={1.5} />, title: 'Web Services & Development',
+    desc: 'Custom-built websites for schools and businesses — from simple landing pages to full portals with online admissions, fee payments, and CRM integrations.',
+    tags: ['School Sites', 'Portals', 'Admissions', 'CRM']
+  },
+  {
+    id: 'lms-saas', img: '/services/lms-saas.png', icon: <GraduationCap size={32} strokeWidth={1.5} />, title: 'LMS & SaaS Projects',
+    desc: 'End-to-end development of Learning Management Systems and SaaS platforms. We build scalable e-learning tools, student dashboards, and admin portals for educational institutions.',
+    tags: ['LMS', 'E-Learning', 'SaaS', 'Student Portal']
   },
   {
     id: 'analytics-reporting', img: '/services/analytics-reporting.png', icon: <BarChart3 size={32} strokeWidth={1.5} />, title: 'Analytics & Reporting',
@@ -22,11 +42,6 @@ const SERVICES = [
     id: 'paid-advertising', img: '/services/paid-advertising.png', icon: <BadgeDollarSign size={32} strokeWidth={1.5} />, title: 'Paid Advertising',
     desc: 'High-ROAS ad campaigns on Meta, TikTok, Google & YouTube. From audience research to creative testing and full optimisation.',
     tags: ['Meta Ads', 'Google Ads', 'TikTok Ads', 'Retargeting']
-  },
-  {
-    id: 'influencer-marketing', img: '/services/influencer-marketing.png', icon: <Megaphone size={32} strokeWidth={1.5} />, title: 'Influencer Marketing',
-    desc: 'Identify, negotiate, and manage creator partnerships that authentically amplify your brand to highly targeted audiences.',
-    tags: ['Nano', 'Micro', 'Macro', 'UGC']
   },
   {
     id: 'brand-strategy', img: '/services/brand-strategy.png', icon: <Crosshair size={32} strokeWidth={1.5} />, title: 'Brand Strategy',
@@ -58,10 +73,10 @@ export default function Services({ theme: t }) {
         <div className="wrap" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
           <Badge t={t}>What We Offer</Badge>
           <h1 className="hero-h font-display" style={{ color: t.textHeading, fontSize: 'clamp(2.4rem,5vw,4.5rem)', marginBottom: 18 }}>
-            Social Media <span className="g-text anim-grad" style={{ backgroundImage: t.grad }}>Services</span>
+            Everything You Need to <span className="g-text anim-grad" style={{ backgroundImage: t.grad }}>Grow</span>
           </h1>
-          <p style={{ fontSize: 17, color: t.text, maxWidth: 560, margin: '0 auto 36px', lineHeight: 1.75 }}>
-            From strategy to execution — we manage every facet of your social presence so you can focus on running your business.
+          <p style={{ fontSize: 17, color: t.text, maxWidth: 600, margin: '0 auto 36px', lineHeight: 1.75 }}>
+            From social media management and event photography to custom websites and LMS platforms — we handle every growth channel so you can focus on what you do best.
           </p>
           <Link to="/contact" className="btn btn-lg" style={{ background: t.grad, color: '#fff', boxShadow: t.shadow }}>Get a Free Audit →</Link>
         </div>
