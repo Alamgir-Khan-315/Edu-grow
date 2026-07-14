@@ -14,22 +14,22 @@ const SERVICES = [
     tags: ['Reels', 'Video Editing', 'Carousels', 'Design']
   },
   {
-    id: 'event-photography', img: '/services/event-photography.png', icon: <Camera size={32} strokeWidth={1.5} />, title: 'Event Photography',
+    id: 'event-photography', img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=900&auto=format&fit=crop', icon: <Camera size={32} strokeWidth={1.5} />, title: 'Event Photography',
     desc: 'Professional event photography for school ceremonies, corporate functions, product launches, and conferences. High-resolution edited images delivered fast.',
     tags: ['School Events', 'Corporate', 'Ceremonies', 'Product Launches']
   },
   {
-    id: 'event-videography', img: '/services/event-videography.png', icon: <Video size={32} strokeWidth={1.5} />, title: 'Event Videography',
+    id: 'event-videography', img: 'https://images.unsplash.com/photo-1576595580361-90a855b84b20?q=80&w=900&auto=format&fit=crop', icon: <Video size={32} strokeWidth={1.5} />, title: 'Event Videography',
     desc: 'Cinematic event coverage with professional-grade equipment. Full event films, highlight reels, and social-ready cuts — all post-produced in-house.',
     tags: ['Event Films', 'Highlight Reels', 'Drone', 'Social Cuts']
   },
   {
-    id: 'web-services', img: '/services/web-services.png', icon: <Globe size={32} strokeWidth={1.5} />, title: 'Web Services & Development',
+    id: 'web-services', img: 'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=900&auto=format&fit=crop', icon: <Globe size={32} strokeWidth={1.5} />, title: 'Web Services & Development',
     desc: 'Custom-built websites for schools and businesses — from simple landing pages to full portals with online admissions, fee payments, and CRM integrations.',
     tags: ['School Sites', 'Portals', 'Admissions', 'CRM']
   },
   {
-    id: 'lms-saas', img: '/services/lms-saas.png', icon: <GraduationCap size={32} strokeWidth={1.5} />, title: 'LMS & SaaS Projects',
+    id: 'lms-saas', img: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=900&auto=format&fit=crop', icon: <GraduationCap size={32} strokeWidth={1.5} />, title: 'LMS & SaaS Projects',
     desc: 'End-to-end development of Learning Management Systems and SaaS platforms. We build scalable e-learning tools, student dashboards, and admin portals for educational institutions.',
     tags: ['LMS', 'E-Learning', 'SaaS', 'Student Portal']
   },
