@@ -29,6 +29,7 @@ const NAV = [
     ]
   },
   { label: 'Process', to: '/process' },
+  { label: 'Plans', to: '/plans' },
   { label: 'Contact', to: '/contact' },
 ]
 

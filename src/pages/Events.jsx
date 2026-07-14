@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
-import { CalendarCheck, Video, Megaphone, Laptop, Building2, Music, Trophy, Rocket, GlassWater, GraduationCap, Globe, Users, Camera, Mic2 } from 'lucide-react'
+import { CalendarCheck, Video, Megaphone, Laptop, Building2, Music, Trophy, Rocket, GlassWater, GraduationCap, Globe, Users, Camera, Mic2, MapPin, Check } from 'lucide-react'
 import CountUp from '../components/CountUp'
 
 // Gallery Images
@@ -105,7 +105,7 @@ export default function Events({ theme: t }) {
                 <p style={{ fontSize: 17, lineHeight: 1.8, color: t.text, marginBottom: 24 }}>{desc}</p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                   {features.map(f => (
-                    <span key={f} style={{ fontSize: 13, fontWeight: 600, padding: '6px 14px', borderRadius: 99, background: `rgba(${t.rgb},.1)`, color: t.accent, border: `1px solid rgba(${t.rgb},.2)` }}>✓ {f}</span>
+                    <span key={f} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, padding: '6px 14px', borderRadius: 99, background: `rgba(${t.rgb},.1)`, color: t.accent, border: `1px solid rgba(${t.rgb},.2)` }}><Check size={14} strokeWidth={2.5} /> {f}</span>
                   ))}
                 </div>
               </div>
@@ -166,7 +166,7 @@ export default function Events({ theme: t }) {
                 <div className="overlay" style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)', display:'flex', flexDirection:'column', justifyContent:'flex-end', padding:32, opacity:0, transition:'opacity .4s ease' }}>
                   <span style={{ fontSize:12, fontWeight:700, textTransform:'uppercase', letterSpacing:1, color:t.accent, marginBottom:8 }}>{category}</span>
                   <h3 style={{ color:'#fff', fontSize:22, fontWeight:700, marginBottom:4, fontFamily:'Syne,sans-serif' }}>{title}</h3>
-                  <p style={{ color:'rgba(255,255,255,0.7)', fontSize:14 }}>📍 {location}</p>
+                  <p style={{ color:'rgba(255,255,255,0.7)', fontSize:14, display: 'inline-flex', alignItems: 'center', gap: 6 }}><MapPin size={14} /> {location}</p>
                 </div>
               </div>
             ))}

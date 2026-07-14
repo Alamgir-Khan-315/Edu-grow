@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Services from './pages/Services'
 import Events from './pages/Events'
 import Process from './pages/Process'
+import Plans from './pages/Plans'
 import Contact from './pages/Contact'
 import ScrollToTop from './components/ScrollToTop'
 import WhatsAppButton from './components/WhatsAppButton'
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="/services" element={<Services theme={theme} />} />
           <Route path="/events" element={<Events theme={theme} />} />
           <Route path="/process" element={<Process theme={theme} />} />
+          <Route path="/plans" element={<Plans theme={theme} />} />
           <Route path="/contact" element={<Contact theme={theme} />} />
         </Routes>
         <Footer theme={theme} />

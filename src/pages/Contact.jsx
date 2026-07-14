@@ -2,7 +2,15 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
 import { Mail, Phone, MapPin, Clock, PartyPopper, Plus, Send } from 'lucide-react'
-import { FaWhatsapp } from 'react-icons/fa';
+import { FaWhatsapp, FaXTwitter, FaLinkedinIn, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa6';
+
+const SOCIAL_LINKS = [
+  { icon: <FaXTwitter size={16} />, label: 'X' },
+  { icon: <FaLinkedinIn size={16} />, label: 'LinkedIn' },
+  { icon: <FaInstagram size={16} />, label: 'Instagram' },
+  { icon: <FaTiktok size={16} />, label: 'TikTok' },
+  { icon: <FaYoutube size={16} />, label: 'YouTube' },
+]
 
 const FAQS = [
   { q: 'How quickly can you start?', a: 'We can onboard new clients within 3–5 business days. For events, we recommend reaching out at least 4 weeks before your event date.' },
@@ -105,11 +113,11 @@ export default function Contact({ theme: t }) {
               <div style={{ marginTop: 28 }}>
                 <p style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: t.textMuted, marginBottom: 14 }}>Follow Us</p>
                 <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                  {['𝕏', 'LinkedIn', 'Instagram', 'TikTok', 'YouTube'].map(s => (
-                    <button key={s} style={{ padding: '8px 14px', borderRadius: 99, border: `1px solid ${t.border}`, background: `rgba(${t.rgb},.08)`, color: t.text, cursor: 'pointer', fontSize: 12, fontWeight: 600, transition: 'all .2s' }}
+                  {SOCIAL_LINKS.map(({ icon, label }) => (
+                    <button key={label} aria-label={label} title={label} style={{ width: 42, height: 42, borderRadius: '50%', border: `1px solid ${t.border}`, background: `rgba(${t.rgb},.08)`, color: t.text, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all .2s' }}
                       onMouseEnter={e => { e.currentTarget.style.borderColor = t.accent; e.currentTarget.style.color = t.accent; e.currentTarget.style.background = `rgba(${t.rgb},.16)` }}
                       onMouseLeave={e => { e.currentTarget.style.borderColor = t.border; e.currentTarget.style.color = t.text; e.currentTarget.style.background = `rgba(${t.rgb},.08)` }}
-                    >{s}</button>
+                    >{icon}</button>
                   ))}
                 </div>
               </div>
