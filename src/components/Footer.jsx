@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { FaLinkedinIn, FaYoutube, FaFacebookF, FaInstagram } from 'react-icons/fa'
 
 const COLS = {
   'Services': [
@@ -15,12 +16,18 @@ const COLS = {
   ],
   'Company': [
     { label: 'Our Process', to: '/process' },
+    { label: 'Plans & Pricing', to: '/plans' },
     { label: 'Contact Us', to: '/contact' },
     { label: 'About', to: '/' },
   ],
 }
 
-const SOCIALS = ['in', '▶', '📘', '📸']
+const SOCIALS = [
+  { icon: <FaLinkedinIn size={15} />, label: 'LinkedIn' },
+  { icon: <FaYoutube size={15} />, label: 'YouTube' },
+  { icon: <FaFacebookF size={15} />, label: 'Facebook' },
+  { icon: <FaInstagram size={15} />, label: 'Instagram' },
+]
 
 export default function Footer({ theme: t }) {
   const a = t.accent
@@ -42,11 +49,11 @@ export default function Footer({ theme: t }) {
               Your full-service social media &amp; events agency. We turn brands into communities and events into experiences.
             </p>
             <div style={{ display: 'flex', gap: 8 }}>
-              {SOCIALS.map((s, i) => (
-                <button key={i} style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${t.border}`, background: `rgba(${t.rgb},.08)`, color: t.text, cursor: 'pointer', fontSize: 13, transition: 'all .2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = `rgba(${t.rgb},.22)`; e.currentTarget.style.borderColor = a }}
-                  onMouseLeave={e => { e.currentTarget.style.background = `rgba(${t.rgb},.08)`; e.currentTarget.style.borderColor = t.border }}
-                >{s}</button>
+              {SOCIALS.map(({ icon, label }) => (
+                <button key={label} aria-label={label} title={label} style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${t.border}`, background: `rgba(${t.rgb},.08)`, color: t.text, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all .2s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = `rgba(${t.rgb},.22)`; e.currentTarget.style.borderColor = a; e.currentTarget.style.color = a }}
+                  onMouseLeave={e => { e.currentTarget.style.background = `rgba(${t.rgb},.08)`; e.currentTarget.style.borderColor = t.border; e.currentTarget.style.color = t.text }}
+                >{icon}</button>
               ))}
             </div>
           </div>

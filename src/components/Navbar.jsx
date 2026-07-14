@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
-import { Briefcase, Sparkles, Zap, Sun, Waves, Menu, X, ChevronDown } from 'lucide-react'
+import { Briefcase, Sparkles, Zap, Sun, Waves, Menu, X, ChevronDown, Gem } from 'lucide-react'
 
 const themeIcons = {
+  pro: <Gem size={13} />,
   neon: <Zap size={15} />,
   light: <Sun size={15} />,
   ocean: <Waves size={15} />
@@ -13,22 +14,23 @@ const NAV = [
   {
     label: 'Services', to: '/services', dropdown: [
       { label: 'Social Media Management', to: '/services#social-media-management' },
-      { label: 'Content Creation', to: '/services#content-creation' },
-      { label: 'Analytics & Reporting', to: '/services#analytics-reporting' },
-      { label: 'Paid Advertising', to: '/services#paid-advertising' },
-      { label: 'Influencer Marketing', to: '/services#influencer-marketing' },
+      { label: 'Content Creation & Video Editing', to: '/services#content-creation' },
+      { label: 'Event Photography', to: '/services#event-photography' },
+      { label: 'Event Videography', to: '/services#event-videography' },
+      { label: 'Web Services & Development', to: '/services#web-services' },
+      { label: 'LMS & SaaS Projects', to: '/services#lms-saas' },
     ]
   },
   {
     label: 'Events', to: '/events', dropdown: [
-      { label: 'Event Planning', to: '/events#event-planning' },
-      { label: 'Videography & Photography', to: '/events#videography-photography' },
-      { label: 'Event Hosting', to: '/events#event-hosting' },
-      { label: 'Event Promotion', to: '/events#event-promotion' },
-      { label: 'Virtual Events', to: '/events#virtual-events' },
+      { label: 'Event Photography', to: '/events#photography' },
+      { label: 'Event Videography', to: '/events#videography' },
+      { label: 'What We Cover', to: '/events#covers' },
+      { label: 'Portfolio', to: '/events#portfolio' },
     ]
   },
   { label: 'Process', to: '/process' },
+  { label: 'Plans', to: '/plans' },
   { label: 'Contact', to: '/contact' },
 ]
 

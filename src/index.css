@@ -200,6 +200,70 @@ body {
 .contact-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
 @media (max-width: 640px) { .contact-form-grid { grid-template-columns: 1fr; } }
 
+/* ── Plan card hover — pure CSS so child elements never break the transition ── */
+.plan-card {
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.plan-card:hover {
+  border-color: var(--card-accent) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+/* ── Custom cursor ── */
+* { cursor: none !important; }
+@media (hover: none) and (pointer: coarse) {
+  * { cursor: auto !important; }
+  .cursor-dot, .cursor-ring { display: none !important; }
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width .15s, height .15s, opacity .2s;
+  mix-blend-mode: multiply;
+}
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  border: 1.5px solid currentColor;
+  transition: width .35s cubic-bezier(.4,0,.2,1), height .35s cubic-bezier(.4,0,.2,1), opacity .2s, border-color .3s;
+  opacity: 0.5;
+}
+.cursor-dot.expanded { width: 14px; height: 14px; }
+.cursor-ring.expanded { width: 56px; height: 56px; opacity: 0.28; }
+
+/* ── Grid line background texture ── */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(14,105,190,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14,105,190,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Staggered fade-in for hero words ── */
+@keyframes wordIn {
+  from { opacity: 0; transform: translateY(20px) skewY(2deg); }
+  to   { opacity: 1; transform: translateY(0) skewY(0); }
+}
+.word-in { animation: wordIn .6s cubic-bezier(.4,0,.2,1) both; }
+.word-in-1 { animation-delay: .05s; }
+.word-in-2 { animation-delay: .18s; }
+.word-in-3 { animation-delay: .31s; }
+
+/* ── Marquee scroll ── */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { display: flex; animation: marquee 28s linear infinite; }
+
 /* WhatsApp Float */
 .whatsapp-float {
   position: fixed;
