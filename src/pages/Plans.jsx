@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
 import {
   Check, Image, Clapperboard, Sparkles, Globe, LayoutTemplate, Rocket,
@@ -140,77 +140,95 @@ function Badge({ t, children }) {
 
 function PlanCard({ t, plan }) {
   const { icon, name, tag, price, period, blurb, features, popular, note } = plan
+  const navigate = useNavigate()
+
+  const handleChoose = () => {
+    navigate('/contact', {
+      state: {
+        planName: name,
+        planTag: tag,
+        planPrice: price,
+        planPeriod: period,
+      },
+    })
+  }
+
   return (
-    <div
-      className="card card-shine"
-      style={{
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        background: t.bgCard,
-        border: `1.5px solid ${popular ? t.accent : t.border}`,
-        borderRadius: 24,
-        padding: 'clamp(28px, 4vw, 36px)',
-        boxShadow: popular ? t.glow : 'none',
-      }}
-      onMouseEnter={e => { e.currentTarget.style.borderColor = t.accent; e.currentTarget.style.boxShadow = t.shadow }}
-      onMouseLeave={e => { e.currentTarget.style.borderColor = popular ? t.accent : t.border; e.currentTarget.style.boxShadow = popular ? t.glow : 'none' }}
-    >
-      {popular && (
-        <span style={{
-          position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)',
-          display: 'inline-flex', alignItems: 'center', gap: 6,
-          background: t.grad, color: '#fff', fontSize: 11, fontWeight: 800,
-          letterSpacing: '.1em', textTransform: 'uppercase', padding: '7px 16px',
-          borderRadius: 99, boxShadow: t.shadow, whiteSpace: 'nowrap',
-        }}>
-          <Star size={12} fill="currentColor" strokeWidth={0} /> Most Popular
-        </span>
-      )}
-
-      <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 18 }}>
-        <div style={{ width: 52, height: 52, borderRadius: 16, background: `rgba(${t.rgb},.12)`, color: t.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{icon}</div>
-        <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: t.textMuted }}>{tag}</span>
-      </div>
-
-      <h3 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 22, color: t.textHeading, marginBottom: 8, lineHeight: 1.2 }}>{name}</h3>
-      <p style={{ fontSize: 14, lineHeight: 1.7, color: t.text, marginBottom: 22 }}>{blurb}</p>
-
-      <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6, marginBottom: 24 }}>
-        <span style={{ fontSize: 15, fontWeight: 700, color: t.textMuted, marginBottom: 6 }}>PKR</span>
-        <span className="g-text font-display" style={{ backgroundImage: t.grad, fontSize: 'clamp(2rem, 5vw, 2.6rem)', fontWeight: 900, lineHeight: 1 }}>{price}</span>
-        <span style={{ fontSize: 14, color: t.textMuted, marginBottom: 6 }}>{period}</span>
-      </div>
-
-      <div style={{ height: 1, background: t.border, marginBottom: 22 }} />
-
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
-        {features.map(f => (
-          <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, lineHeight: 1.6, color: t.text }}>
-            <span style={{ color: t.accent, flexShrink: 0, marginTop: 2, display: 'flex' }}><Check size={16} strokeWidth={2.5} /></span>
-            {f}
-          </li>
-        ))}
-      </ul>
-
-      {note && (
-        <p style={{ fontSize: 12, color: t.textMuted, lineHeight: 1.6, marginTop: 18, fontStyle: 'italic' }}>{note}</p>
-      )}
-
-      <Link
-        to="/contact"
-        className="btn btn-md"
+    /* Outer wrapper has paddingTop on popular cards so the badge is never clipped */
+    <div style={{ paddingTop: popular ? 20 : 0, height: '100%' }}>
+      <div
+        className="card card-shine"
         style={{
-          marginTop: 24, justifyContent: 'center', display: 'flex',
-          background: popular ? t.grad : 'transparent',
-          color: popular ? '#fff' : t.accent,
-          border: popular ? 'none' : `1.5px solid rgba(${t.rgb},.35)`,
-          boxShadow: popular ? t.shadow : 'none',
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          background: t.bgCard,
+          border: `1.5px solid ${popular ? t.accent : t.border}`,
+          borderRadius: 24,
+          padding: 'clamp(28px, 4vw, 36px)',
+          boxShadow: popular ? t.glow : 'none',
         }}
+        onMouseEnter={e => { e.currentTarget.style.borderColor = t.accent; e.currentTarget.style.boxShadow = t.shadow }}
+        onMouseLeave={e => { e.currentTarget.style.borderColor = popular ? t.accent : t.border; e.currentTarget.style.boxShadow = popular ? t.glow : 'none' }}
       >
-        Choose {tag}
-      </Link>
+        {popular && (
+          <span style={{
+            position: 'absolute', top: -18, left: '50%', transform: 'translateX(-50%)',
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            background: t.grad, color: '#fff', fontSize: 11, fontWeight: 800,
+            letterSpacing: '.1em', textTransform: 'uppercase', padding: '7px 16px',
+            borderRadius: 99, boxShadow: t.shadow, whiteSpace: 'nowrap',
+            zIndex: 2,
+          }}>
+            <Star size={12} fill="currentColor" strokeWidth={0} /> Most Popular
+          </span>
+        )}
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 18 }}>
+          <div style={{ width: 52, height: 52, borderRadius: 16, background: `rgba(${t.rgb},.12)`, color: t.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{icon}</div>
+          <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: t.textMuted }}>{tag}</span>
+        </div>
+
+        <h3 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 22, color: t.textHeading, marginBottom: 8, lineHeight: 1.2 }}>{name}</h3>
+        <p style={{ fontSize: 14, lineHeight: 1.7, color: t.text, marginBottom: 22 }}>{blurb}</p>
+
+        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6, marginBottom: 24 }}>
+          <span style={{ fontSize: 15, fontWeight: 700, color: t.textMuted, marginBottom: 6 }}>PKR</span>
+          <span className="g-text font-display" style={{ backgroundImage: t.grad, fontSize: 'clamp(2rem, 5vw, 2.6rem)', fontWeight: 900, lineHeight: 1 }}>{price}</span>
+          <span style={{ fontSize: 14, color: t.textMuted, marginBottom: 6 }}>{period}</span>
+        </div>
+
+        <div style={{ height: 1, background: t.border, marginBottom: 22 }} />
+
+        <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
+          {features.map(f => (
+            <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, lineHeight: 1.6, color: t.text }}>
+              <span style={{ color: t.accent, flexShrink: 0, marginTop: 2, display: 'flex' }}><Check size={16} strokeWidth={2.5} /></span>
+              {f}
+            </li>
+          ))}
+        </ul>
+
+        {note && (
+          <p style={{ fontSize: 12, color: t.textMuted, lineHeight: 1.6, marginTop: 18, fontStyle: 'italic' }}>{note}</p>
+        )}
+
+        <button
+          onClick={handleChoose}
+          className="btn btn-md"
+          style={{
+            marginTop: 24, justifyContent: 'center', display: 'flex', width: '100%',
+            background: popular ? t.grad : 'transparent',
+            color: popular ? '#fff' : t.accent,
+            border: popular ? 'none' : `1.5px solid rgba(${t.rgb},.35)`,
+            boxShadow: popular ? t.shadow : 'none',
+            cursor: 'pointer',
+          }}
+        >
+          Choose {tag}
+        </button>
+      </div>
     </div>
   )
 }

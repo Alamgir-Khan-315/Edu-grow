@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
 import { Mail, Phone, MapPin, Clock, PartyPopper, Plus, Send } from 'lucide-react'
 import { FaWhatsapp, FaXTwitter, FaLinkedinIn, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa6';
@@ -42,13 +42,30 @@ function FaqItem({ q, a, t }) {
 }
 
 export default function Contact({ theme: t }) {
-  const [form, setForm] = useState({ name: '', email: '', company: '', service: '', budget: '', message: '' })
+  const { state: routeState } = useLocation()
+
+  // Pre-fill when arriving from a plan card
+  const planNote = routeState?.planName
+    ? `I'm interested in the ${routeState.planName} (${routeState.planTag}) — PKR ${routeState.planPrice} ${routeState.planPeriod}. Please get in touch with me to proceed.`
+    : ''
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    company: '',
+    service: routeState?.planName ? routeState.planName : '',
+    budget: '',
+    message: planNote,
+  })
   const [sent, setSent] = useState(false)
 
   const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
   const submit = e => {
     e.preventDefault();
-    const text = `*New Contact Inquiry*\n\n*Name:* ${form.name}\n*Email:* ${form.email}\n*Company:* ${form.company}\n*Service:* ${form.service}\n*Budget:* ${form.budget}\n*Message:* ${form.message}`;
+    const planLine = routeState?.planName
+      ? `*Selected Plan:* ${routeState.planName} (${routeState.planTag}) — PKR ${routeState.planPrice} ${routeState.planPeriod}\n`
+      : ''
+    const text = `*New Inquiry — EduGrow Digital*\n\n${planLine}*Name:* ${form.name}\n*Email:* ${form.email}\n*Company:* ${form.company}\n*Service:* ${form.service}\n*Budget:* ${form.budget}\n*Message:* ${form.message}`;
     const url = `https://api.whatsapp.com/send?phone=923144085533&text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
     setSent(true);
@@ -134,7 +151,17 @@ export default function Contact({ theme: t }) {
                 </div>
               ) : (
                 <form onSubmit={submit}>
-                  <h3 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 22, color: t.textHeading, marginBottom: 28 }}>Send Us a Message</h3>
+                  <h3 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 22, color: t.textHeading, marginBottom: routeState?.planName ? 16 : 28 }}>Send Us a Message</h3>
+
+                  {routeState?.planName && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderRadius: 12, background: `rgba(${t.rgb},.1)`, border: `1.5px solid rgba(${t.rgb},.3)`, marginBottom: 24 }}>
+                      <span style={{ width: 8, height: 8, borderRadius: '50%', background: t.accent, flexShrink: 0 }} />
+                      <span style={{ fontSize: 13, fontWeight: 600, color: t.textHeading }}>
+                        Enquiring about: <span style={{ color: t.accent }}>{routeState.planName}</span>
+                        <span style={{ color: t.textMuted, fontWeight: 400 }}> — PKR {routeState.planPrice} {routeState.planPeriod}</span>
+                      </span>
+                    </div>
+                  )}
 
                   <div className="contact-form-grid">
                     <div>
