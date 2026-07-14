@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
 import { Smartphone, Calendar, TrendingUp, Target, Star, Rocket, Quote, CheckCircle2, Users, MessageCircle, FileText, Zap, BarChart3, ShieldCheck, Clock3, GraduationCap } from 'lucide-react'
 import CountUp from '../components/CountUp'
-import heroImg from '../assets/hero.png'
+import heroImg from '../assets/3.jpg'
 
 const STATS = [
   { n: '10+', label: 'School Covered' },
@@ -124,14 +124,15 @@ export default function Home({ theme: t }) {
             <div className="anim-float" style={{
               position: 'relative', width: '100%', maxWidth: 420, aspectRatio: '1/1',
               borderRadius: '42% 58% 63% 37% / 45% 40% 60% 55%',
-              background: t.grad, boxShadow: t.glow,
+              background: 'transparent',
               display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden'
             }}>
               <div style={{
                 position: 'absolute', inset: 14, borderRadius: '42% 58% 63% 37% / 45% 40% 60% 55%',
-                background: t.bgCard, display: 'flex', alignItems: 'center', justifyContent: 'center'
+                background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                overflow: 'hidden'
               }}>
-                <img src={heroImg} alt="Edugrow" style={{ width: '72%', height: '72%', objectFit: 'contain' }} />
+                <img src={heroImg} alt="Edugrow" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', mixBlendMode: 'multiply' }} />
               </div>
             </div>
 
