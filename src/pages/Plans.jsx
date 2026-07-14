@@ -154,36 +154,36 @@ function PlanCard({ t, plan }) {
   }
 
   return (
-    /* Outer wrapper has paddingTop on popular cards so the badge is never clipped */
-    <div style={{ paddingTop: popular ? 20 : 0, height: '100%' }}>
-      <div
-        className="card card-shine"
-        style={{
-          position: 'relative',
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100%',
-          background: t.bgCard,
-          border: `1.5px solid ${popular ? t.accent : t.border}`,
-          borderRadius: 24,
-          padding: 'clamp(28px, 4vw, 36px)',
-          boxShadow: popular ? t.glow : 'none',
-        }}
-        onMouseEnter={e => { e.currentTarget.style.borderColor = t.accent; e.currentTarget.style.boxShadow = t.shadow }}
-        onMouseLeave={e => { e.currentTarget.style.borderColor = popular ? t.accent : t.border; e.currentTarget.style.boxShadow = popular ? t.glow : 'none' }}
-      >
-        {popular && (
+    <div
+      className="card card-shine"
+      style={{
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        background: t.bgCard,
+        border: `1.5px solid ${popular ? t.accent : t.border}`,
+        borderRadius: 24,
+        padding: popular ? '0 clamp(28px, 4vw, 36px) clamp(28px, 4vw, 36px)' : 'clamp(28px, 4vw, 36px)',
+        boxShadow: popular ? t.glow : 'none',
+        overflow: 'visible',
+      }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = t.accent; e.currentTarget.style.boxShadow = t.shadow }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor = popular ? t.accent : t.border; e.currentTarget.style.boxShadow = popular ? t.glow : 'none' }}
+    >
+      {/* Badge lives IN the card flow — centred using flex, no position:absolute so it never clips */}
+      {popular && (
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 24 }}>
           <span style={{
-            position: 'absolute', top: -18, left: '50%', transform: 'translateX(-50%)',
             display: 'inline-flex', alignItems: 'center', gap: 6,
             background: t.grad, color: '#fff', fontSize: 11, fontWeight: 800,
-            letterSpacing: '.1em', textTransform: 'uppercase', padding: '7px 16px',
-            borderRadius: 99, boxShadow: t.shadow, whiteSpace: 'nowrap',
-            zIndex: 2,
+            letterSpacing: '.1em', textTransform: 'uppercase', padding: '7px 18px',
+            borderRadius: '0 0 14px 14px', boxShadow: t.shadow, whiteSpace: 'nowrap',
           }}>
             <Star size={12} fill="currentColor" strokeWidth={0} /> Most Popular
           </span>
-        )}
+        </div>
+      )}
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 18 }}>
           <div style={{ width: 52, height: 52, borderRadius: 16, background: `rgba(${t.rgb},.12)`, color: t.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{icon}</div>
@@ -228,7 +228,6 @@ function PlanCard({ t, plan }) {
         >
           Choose {tag}
         </button>
-      </div>
     </div>
   )
 }
@@ -259,7 +258,7 @@ export default function Plans({ theme: t }) {
             <h2 className="sec-h font-display" style={{ color: t.textHeading }}>Marketing &amp; <span className="g-text" style={{ backgroundImage: t.grad }}>Video Editing</span></h2>
             <p style={{ color: t.text, fontSize: 16, marginTop: 12, maxWidth: 560, margin: '12px auto 0' }}>Monthly management plans that keep your audience engaged and your admissions funnel full.</p>
           </div>
-          <div className="grid-3" style={{ alignItems: 'stretch' }}>
+          <div className="grid-3" style={{ alignItems: 'start' }}>
             {SMM_PLANS.map(plan => <PlanCard key={plan.id} t={t} plan={plan} />)}
           </div>
         </AnimatedReveal>
@@ -273,7 +272,7 @@ export default function Plans({ theme: t }) {
             <h2 className="sec-h font-display" style={{ color: t.textHeading }}>Websites That <span className="g-text" style={{ backgroundImage: t.grad }}>Convert</span></h2>
             <p style={{ color: t.text, fontSize: 16, marginTop: 12, maxWidth: 560, margin: '12px auto 0' }}>One-time builds — from an essential presence to a fully custom portal with online payments.</p>
           </div>
-          <div className="grid-3" style={{ alignItems: 'stretch' }}>
+          <div className="grid-3" style={{ alignItems: 'start' }}>
             {WEB_PLANS.map(plan => <PlanCard key={plan.id} t={t} plan={plan} />)}
           </div>
           <p style={{ textAlign: 'center', color: t.textMuted, fontSize: 13, marginTop: 28, maxWidth: 620, margin: '28px auto 0', lineHeight: 1.7 }}>
