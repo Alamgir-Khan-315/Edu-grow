@@ -1,4 +1,15 @@
 export const themes = {
+  pro: {
+    id: 'pro', name: 'Professional', emoji: '✦', dark: false,
+    bg: '#f0f4f8', bgCard: '#ffffff', bgSection: '#e6eef7', bgNav: 'rgba(240,244,248,0.95)',
+    border: 'rgba(14,105,190,0.14)', borderHover: 'rgba(14,105,190,0.45)',
+    text: '#3d5166', textMuted: '#6b84a0', textHeading: '#0b1f35',
+    accent: '#0e69be', accent2: '#10b981',
+    rgb: '14,105,190',
+    grad: 'linear-gradient(135deg,#0e69be 0%,#10b981 100%)',
+    gradBg: 'radial-gradient(ellipse 90% 60% at 50% -10%,rgba(14,105,190,0.13),transparent)',
+    shadow: '0 8px 40px rgba(14,105,190,0.16)', glow: '0 0 60px rgba(14,105,190,0.24)',
+  },
   neon: {
     id: 'neon', name: 'Neon', emoji: '⚡', dark: true,
     bg: '#010a04', bgCard: '#041209', bgSection: '#020905', bgNav: 'rgba(1,10,4,0.92)',

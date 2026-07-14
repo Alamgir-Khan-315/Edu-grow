@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
-import { Briefcase, Sparkles, Zap, Sun, Waves, Menu, X, ChevronDown } from 'lucide-react'
+import { Briefcase, Sparkles, Zap, Sun, Waves, Menu, X, ChevronDown, Gem } from 'lucide-react'
 
 const themeIcons = {
+  pro: <Gem size={13} />,
   neon: <Zap size={15} />,
   light: <Sun size={15} />,
   ocean: <Waves size={15} />
@@ -21,11 +22,9 @@ const NAV = [
   },
   {
     label: 'Events', to: '/events', dropdown: [
-      { label: 'Event Planning', to: '/events#event-planning' },
-      { label: 'Videography & Photography', to: '/events#videography-photography' },
-      { label: 'Event Hosting', to: '/events#event-hosting' },
-      { label: 'Event Promotion', to: '/events#event-promotion' },
-      { label: 'Virtual Events', to: '/events#virtual-events' },
+      { label: 'Event Photography', to: '/events#photography' },
+      { label: 'Event Videography', to: '/events#videography' },
+      { label: 'Web Services', to: '/events#web-services' },
     ]
   },
   { label: 'Process', to: '/process' },

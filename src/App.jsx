@@ -11,15 +11,17 @@ import Plans from './pages/Plans'
 import Contact from './pages/Contact'
 import ScrollToTop from './components/ScrollToTop'
 import WhatsAppButton from './components/WhatsAppButton'
+import CustomCursor from './components/CustomCursor'
 
 export default function App() {
-  const [activeTheme, setActiveTheme] = useState('light')
+  const [activeTheme, setActiveTheme] = useState('pro')
   const theme = themes[activeTheme]
 
   return (
     <BrowserRouter>
       <ScrollToTop />
       <div style={{ background: theme.bg, color: theme.text, transition: 'background .4s ease, color .4s ease' }}>
+        <CustomCursor theme={theme} />
         <Navbar theme={theme} themeList={themeList} activeTheme={activeTheme} setActiveTheme={setActiveTheme} />
         <Routes>
           <Route path="/" element={<Home theme={theme} />} />
