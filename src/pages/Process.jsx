@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
 import { Search, ClipboardList, Palette, Rocket, LineChart, Radio, Target, Handshake, Zap, Lock, FileText } from 'lucide-react'
+import { useBooking } from '../context/BookingContext'
 
 const STEPS = [
   { n:'01', icon: <Search size={32} strokeWidth={1.5} />, title:'Discovery Call',
@@ -41,6 +42,8 @@ function Badge({ t, children }) {
 }
 
 export default function Process({ theme: t }) {
+  const openBooking = useBooking()
+
   return (
     <main style={{ paddingTop: 80 }}>
 
@@ -124,7 +127,7 @@ export default function Process({ theme: t }) {
             Ready to Start <span className="g-text" style={{ backgroundImage:t.grad }}>Step One?</span>
           </h2>
           <p style={{ fontSize:16, color:t.text, marginBottom:32 }}>Book your free discovery call — we'll show you exactly how we'd approach your brand.</p>
-          <a href="tel:03376062635" className="btn btn-lg" style={{ background:t.grad, color:'#fff', boxShadow:t.shadow, display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration:'none' }}>Book Discovery Call <Rocket size={18} /></a>
+          <button onClick={openBooking} className="btn btn-lg" style={{ background:t.grad, color:'#fff', boxShadow:t.shadow, display: 'inline-flex', alignItems: 'center', gap: 8 }}>Book Discovery Call <Rocket size={18} /></button>
         </AnimatedReveal>
       </section>
     </main>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
 import { Smartphone, PenTool, BarChart3, BadgeDollarSign, Megaphone, Crosshair, Globe, Camera, Video, GraduationCap } from 'lucide-react'
+import { useBooking } from '../context/BookingContext'
 
 const SERVICES = [
   {
@@ -64,6 +65,8 @@ function Badge({ t, children }) {
 }
 
 export default function Services({ theme: t }) {
+  const openBooking = useBooking()
+
   return (
     <main style={{ paddingTop: 80 }}>
 
@@ -153,7 +156,7 @@ export default function Services({ theme: t }) {
         <AnimatedReveal className="wrap" style={{ textAlign: 'center' }}>
           <h2 className="sec-h font-display" style={{ color: t.textHeading, marginBottom: 16 }}>Let's Build Your <span className="g-text" style={{ backgroundImage: t.grad }}>Social Empire</span></h2>
           <p style={{ fontSize: 16, color: t.text, marginBottom: 32 }}>Start with a free audit — we'll show you exactly where you're leaving growth on the table.</p>
-          <a href="tel:03376062635" className="btn btn-lg" style={{ background: t.grad, color: '#fff', boxShadow: t.shadow, textDecoration: 'none' }}>Book Free Audit</a>
+          <button onClick={openBooking} className="btn btn-lg" style={{ background: t.grad, color: '#fff', boxShadow: t.shadow }}>Book Free Audit</button>
         </AnimatedReveal>
       </section>
     </main>

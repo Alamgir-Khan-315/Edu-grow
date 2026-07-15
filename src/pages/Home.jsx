@@ -3,6 +3,7 @@ import AnimatedReveal from '../components/AnimatedReveal'
 import { Smartphone, Calendar, TrendingUp, Target, Star, Rocket, Quote, CheckCircle2, Users, MessageCircle, FileText, Zap, BarChart3, ShieldCheck, Clock3, GraduationCap } from 'lucide-react'
 import CountUp from '../components/CountUp'
 import heroImg from '../assets/3.jpg'
+import { useBooking } from '../context/BookingContext'
 
 const STATS = [
   { n: '10+', label: 'School Covered' },
@@ -71,6 +72,7 @@ function Badge({ t, children }) {
 }
 
 export default function Home({ theme: t }) {
+  const openBooking = useBooking()
   return (
     <main>
       {/* ── HERO ── */}
@@ -97,7 +99,8 @@ export default function Home({ theme: t }) {
 
             <div className="anim-up3" style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 56 }}>
               <Link to="/services" className="btn btn-lg" style={{ background: t.grad, color: '#fff', boxShadow: t.shadow }}>Explore Services →</Link>
-              <Link to="/contact" className="btn-outline btn" style={{ color: t.accent, borderColor: `rgba(${t.rgb},.35)`, border: `1.5px solid rgba(${t.rgb},.35)` }}>Talk to Us</Link>
+              <Link to="#bookCall" className="btn-outline btn" style={{ color: t.accent, borderColor: `rgba(${t.rgb},.35)`, border: `1.5px solid rgba(${t.rgb},.35)` }}>Talk to Us</Link>
+
             </div>
 
             {/* Stats bar */}
@@ -283,7 +286,7 @@ export default function Home({ theme: t }) {
       </section>
 
       {/* ── CTA BAND ── */}
-      <section className="sec-sm" style={{ background: t.bgSection }}>
+      <section id='bookCall' className="sec-sm" style={{ background: t.bgSection }}>
         <AnimatedReveal className="wrap">
           <div style={{ background: t.bgCard, border: `1px solid ${t.border}`, borderRadius: 28, padding: 'clamp(40px, 8vw, 72px) clamp(24px, 6vw, 48px)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
             <div className="blob" style={{ width: 400, height: 400, background: `radial-gradient(circle,rgba(${t.rgb},.18),transparent 70%)`, top: -100, left: '50%', transform: 'translateX(-50%)', pointerEvents: 'none' }} />
@@ -294,7 +297,8 @@ export default function Home({ theme: t }) {
               <p style={{ fontSize: 17, color: t.text, marginBottom: 36, maxWidth: 460, margin: '0 auto 36px' }}>
                 Book a free 30-minute strategy call. No pressure, just insights.
               </p>
-              <a href="tel:03376062635" className="btn btn-lg" style={{ background: t.grad, color: '#fff', boxShadow: t.shadow, display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>Book Free Call <Rocket size={18} /></a>
+              <button onClick={openBooking} className="btn btn-lg" style={{ background: t.grad, color: '#fff', boxShadow: t.shadow, display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>Book Free Call <Rocket size={18} /></button>
+
             </div>
           </div>
         </AnimatedReveal>

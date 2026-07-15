@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 import AnimatedReveal from '../components/AnimatedReveal'
-import { Smartphone, Calendar, TrendingUp, Target, Star, Rocket, Quote, CheckCircle2, Users } from 'lucide-react'
+import { Smartphone, Calendar, TrendingUp, Target, Star, Rocket, Quote, CheckCircle2, Users, MessageCircle, FileText, Zap, BarChart3, ShieldCheck, Clock3, GraduationCap } from 'lucide-react'
 import CountUp from '../components/CountUp'
-import heroImg from '../assets/hero.png'
+import heroImg from '../assets/3.jpg'
+import { useBooking } from '../context/BookingContext'
 
 const STATS = [
   { n: '10+', label: 'School Covered' },
@@ -42,6 +43,20 @@ const TESTIMONIALS = [
   }
 ]
 
+const PROCESS = [
+  { icon: <MessageCircle size={22} strokeWidth={1.5} />, title: 'Discovery Call', desc: 'We learn your goals, audience and what "success" looks like for your school or brand.' },
+  { icon: <FileText size={22} strokeWidth={1.5} />, title: 'Strategy & Proposal', desc: "You get a tailored plan and quote within 24 hours — no obligation." },
+  { icon: <Zap size={22} strokeWidth={1.5} />, title: 'Execution', desc: 'Our team runs content, campaigns and events, keeping you in the loop the whole way.' },
+  { icon: <BarChart3 size={22} strokeWidth={1.5} />, title: 'Reporting & Growth', desc: 'Real-time dashboards and monthly deep-dives show exactly what\'s working.' },
+]
+
+const WHY_CHOOSE = [
+  { icon: <GraduationCap size={22} strokeWidth={1.5} />, title: 'Education-Focused', desc: 'We specialize in schools and youth-focused brands — not a generic one-size-fits-all agency.' },
+  { icon: <Clock3 size={22} strokeWidth={1.5} />, title: 'Fast Onboarding', desc: 'New clients are up and running in 3–5 business days.' },
+  { icon: <ShieldCheck size={22} strokeWidth={1.5} />, title: '100% Content Ownership', desc: 'Every account, asset and piece of data belongs to you. Always.' },
+  { icon: <BarChart3 size={22} strokeWidth={1.5} />, title: 'Transparent Reporting', desc: 'Real-time dashboards mean you always know where your budget is going.' },
+]
+
 function Blob({ t, style }) {
   return <div className="blob" style={{ background: `radial-gradient(circle, rgba(${t.rgb},.22), transparent 70%)`, ...style }} />
 }
@@ -56,6 +71,8 @@ function Badge({ t, children }) {
 }
 
 export default function Home({ theme: t }) {
+  const openBooking = useBooking()
+
   return (
     <main>
       {/* ── HERO ── */}
@@ -82,7 +99,7 @@ export default function Home({ theme: t }) {
 
             <div className="anim-up3" style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 56 }}>
               <Link to="/services" className="btn btn-lg" style={{ background: t.grad, color: '#fff', boxShadow: t.shadow }}>Explore Services →</Link>
-              <Link to="/contact" className="btn-outline btn" style={{ color: t.accent, borderColor: `rgba(${t.rgb},.35)`, border: `1.5px solid rgba(${t.rgb},.35)` }}>Talk to Us</Link>
+              <button onClick={openBooking} className="btn-outline btn" style={{ color: t.accent, background: 'transparent', border: `1.5px solid rgba(${t.rgb},.35)`, cursor: 'pointer' }}>Talk to Us</button>
             </div>
 
             {/* Stats bar */}
@@ -109,14 +126,15 @@ export default function Home({ theme: t }) {
             <div className="anim-float" style={{
               position: 'relative', width: '100%', maxWidth: 420, aspectRatio: '1/1',
               borderRadius: '42% 58% 63% 37% / 45% 40% 60% 55%',
-              background: t.grad, boxShadow: t.glow,
+              background: 'transparent',
               display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden'
             }}>
               <div style={{
                 position: 'absolute', inset: 14, borderRadius: '42% 58% 63% 37% / 45% 40% 60% 55%',
-                background: t.bgCard, display: 'flex', alignItems: 'center', justifyContent: 'center'
+                background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                overflow: 'hidden'
               }}>
-                <img src={heroImg} alt="Edugrow" style={{ width: '72%', height: '72%', objectFit: 'contain' }} />
+                <img src={heroImg} alt="Edugrow" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', mixBlendMode: 'multiply' }} />
               </div>
             </div>
 
@@ -187,6 +205,54 @@ export default function Home({ theme: t }) {
         </AnimatedReveal>
       </section>
 
+      {/* ── OUR PROCESS ── */}
+      <section className="sec" style={{ background: t.bg }}>
+        <AnimatedReveal className="wrap">
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+            <Badge t={t}>How We Work</Badge>
+            <h2 className="sec-h font-display" style={{ color: t.textHeading }}>Our Working <span className="g-text" style={{ backgroundImage: t.grad }}>Process</span></h2>
+            <p style={{ color: t.text, marginTop: 12, fontSize: 16, maxWidth: 520, margin: '12px auto 0' }}>From first call to monthly reporting — here's exactly what to expect.</p>
+          </div>
+          <div className="process-row" style={{ position: 'relative' }}>
+            <div className="process-line" style={{ position: 'absolute', top: 26, left: '12.5%', right: '12.5%', height: 2, background: `linear-gradient(90deg, transparent, rgba(${t.rgb},.3), rgba(${t.rgb},.3), transparent)` }} />
+            <div className="grid-4" style={{ position: 'relative' }}>
+              {PROCESS.map(({ icon, title, desc }, i) => (
+                <div key={title} style={{ textAlign: 'center' }}>
+                  <div style={{ width: 54, height: 54, borderRadius: '50%', background: t.bgCard, border: `2px solid ${t.accent}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: t.accent, margin: '0 auto 20px', position: 'relative', zIndex: 1 }}>
+                    {icon}
+                    <span className="font-display" style={{ position: 'absolute', top: -8, right: -8, width: 22, height: 22, borderRadius: '50%', background: t.grad, color: '#fff', fontSize: 11, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{i + 1}</span>
+                  </div>
+                  <h3 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 700, fontSize: 17, color: t.textHeading, marginBottom: 8 }}>{title}</h3>
+                  <p style={{ fontSize: 13.5, lineHeight: 1.65, color: t.text }}>{desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </AnimatedReveal>
+      </section>
+
+      {/* ── WHY CHOOSE US ── */}
+      <section className="sec" style={{ background: t.bgSection }}>
+        <AnimatedReveal className="wrap">
+          <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <Badge t={t}>Why Choose Us</Badge>
+            <h2 className="sec-h font-display" style={{ color: t.textHeading }}>Built for Schools. <span className="g-text" style={{ backgroundImage: t.grad }}>Built to Grow.</span></h2>
+          </div>
+          <div className="grid-4">
+            {WHY_CHOOSE.map(({ icon, title, desc }) => (
+              <div key={title} className="card" style={{ background: t.bgCard, border: `1px solid ${t.border}`, borderRadius: 18, padding: '28px 22px' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = `rgba(${t.rgb},.5)`; e.currentTarget.style.boxShadow = t.shadow }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = t.border; e.currentTarget.style.boxShadow = 'none' }}
+              >
+                <div style={{ width: 46, height: 46, borderRadius: 13, background: `rgba(${t.rgb},.12)`, color: t.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>{icon}</div>
+                <h3 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 700, fontSize: 16, color: t.textHeading, marginBottom: 8 }}>{title}</h3>
+                <p style={{ fontSize: 13.5, lineHeight: 1.65, color: t.text }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+        </AnimatedReveal>
+      </section>
+
       {/* ── TESTIMONIALS ── */}
       <section className="sec" style={{ background: t.bg }}>
         <AnimatedReveal className="wrap">
@@ -230,7 +296,7 @@ export default function Home({ theme: t }) {
               <p style={{ fontSize: 17, color: t.text, marginBottom: 36, maxWidth: 460, margin: '0 auto 36px' }}>
                 Book a free 30-minute strategy call. No pressure, just insights.
               </p>
-              <a href="tel:03376062635" className="btn btn-lg" style={{ background: t.grad, color: '#fff', boxShadow: t.shadow, display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>Book Free Call <Rocket size={18} /></a>
+              <button onClick={openBooking} className="btn btn-lg" style={{ background: t.grad, color: '#fff', boxShadow: t.shadow, display: 'inline-flex', alignItems: 'center', gap: 8 }}>Book Free Call <Rocket size={18} /></button>
             </div>
           </div>
         </AnimatedReveal>
