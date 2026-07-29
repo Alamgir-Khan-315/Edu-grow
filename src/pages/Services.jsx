@@ -34,21 +34,21 @@ const SERVICES = [
     desc: 'End-to-end development of Learning Management Systems and SaaS platforms. We build scalable e-learning tools, student dashboards, and admin portals for educational institutions.',
     tags: ['LMS', 'E-Learning', 'SaaS', 'Student Portal']
   },
-  {
-    id: 'analytics-reporting', img: '/services/analytics-reporting.png', icon: <BarChart3 size={32} strokeWidth={1.5} />, title: 'Analytics & Reporting',
-    desc: 'Monthly deep-dive reports with KPI tracking, competitor benchmarking, and actionable roadmaps to continuously improve ROI.',
-    tags: ['KPIs', 'Dashboards', 'Insights', 'ROI']
-  },
+  // {
+  //   id: 'analytics-reporting', img: '/services/analytics-reporting.png', icon: <BarChart3 size={32} strokeWidth={1.5} />, title: 'Analytics & Reporting',
+  //   desc: 'Monthly deep-dive reports with KPI tracking, competitor benchmarking, and actionable roadmaps to continuously improve ROI.',
+  //   tags: ['KPIs', 'Dashboards', 'Insights', 'ROI']
+  // },
   {
     id: 'paid-advertising', img: '/services/paid-advertising.png', icon: <BadgeDollarSign size={32} strokeWidth={1.5} />, title: 'Paid Advertising',
     desc: 'High-ROAS ad campaigns on Meta, TikTok, Google & YouTube. From audience research to creative testing and full optimisation.',
     tags: ['Meta Ads', 'Google Ads', 'TikTok Ads', 'Retargeting']
   },
-  {
-    id: 'brand-strategy', img: '/services/brand-strategy.png', icon: <Crosshair size={32} strokeWidth={1.5} />, title: 'Brand Strategy',
-    desc: 'Brand positioning, voice guidelines, visual identity, and a 12-month growth roadmap built specifically around your goals.',
-    tags: ['Positioning', 'Identity', 'Voice', 'Roadmap']
-  },
+  // {
+  //   id: 'brand-strategy', img: '/services/brand-strategy.png', icon: <Crosshair size={32} strokeWidth={1.5} />, title: 'Brand Strategy',
+  //   desc: 'Brand positioning, voice guidelines, visual identity, and a 12-month growth roadmap built specifically around your goals.',
+  //   tags: ['Positioning', 'Identity', 'Voice', 'Roadmap']
+  // },
 ]
 
 const PROCESS = [

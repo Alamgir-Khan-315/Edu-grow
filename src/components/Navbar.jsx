@@ -21,14 +21,14 @@ const NAV = [
       { label: 'LMS & SaaS Projects', to: '/services#lms-saas' },
     ]
   },
-  {
-    label: 'Events', to: '/events', dropdown: [
-      { label: 'Event Photography', to: '/events#photography' },
-      { label: 'Event Videography', to: '/events#videography' },
-      { label: 'What We Cover', to: '/events#covers' },
-      { label: 'Portfolio', to: '/events#portfolio' },
-    ]
-  },
+  // {
+  //   label: 'Events', to: '/events', dropdown: [
+  //     { label: 'Event Photography', to: '/events#photography' },
+  //     { label: 'Event Videography', to: '/events#videography' },
+  //     { label: 'What We Cover', to: '/events#covers' },
+  //     { label: 'Portfolio', to: '/events#portfolio' },
+  //   ]
+  // },
   { label: 'Process', to: '/process' },
   { label: 'Plans', to: '/plans' },
   { label: 'Contact', to: '/contact' },
