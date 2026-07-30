@@ -5,11 +5,25 @@ import { Mail, Phone, MapPin, Clock, PartyPopper, Plus, Send, Star, ShieldCheck,
 import { FaWhatsapp, FaXTwitter, FaLinkedinIn, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa6';
 
 const SOCIAL_LINKS = [
-  { icon: <FaXTwitter size={16} />, label: 'X' },
-  { icon: <FaLinkedinIn size={16} />, label: 'LinkedIn' },
-  { icon: <FaInstagram size={16} />, label: 'Instagram' },
-  { icon: <FaTiktok size={16} />, label: 'TikTok' },
-  { icon: <FaYoutube size={16} />, label: 'YouTube' },
+  // { icon: <FaXTwitter size={16} />, label: 'X', href: '#', hoverColor: '#000', hoverBg: 'rgba(0,0,0,.12)' },  // Uncomment when ready
+  {
+    icon: <FaLinkedinIn size={16} />,
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/edugrow-digital_marketing/?viewAsMember=true',
+    hoverColor: '#0A66C2',
+    hoverBg: 'rgba(10,102,194,.14)',
+    hoverBorder: '#0A66C2',
+  },
+  {
+    icon: <FaInstagram size={16} />,
+    label: 'Instagram',
+    href: 'https://www.instagram.com/edugrow_digital/?hl=en',
+    hoverColor: '#E1306C',
+    hoverBg: 'rgba(225,48,108,.14)',
+    hoverBorder: '#E1306C',
+  },
+  // { icon: <FaTiktok size={16} />, label: 'TikTok', href: '#', hoverColor: '#010101', hoverBg: 'rgba(1,1,1,.12)' },   // Uncomment when ready
+  // { icon: <FaYoutube size={16} />, label: 'YouTube', href: '#', hoverColor: '#FF0000', hoverBg: 'rgba(255,0,0,.12)' }, // Uncomment when ready
 ]
 
 const FAQS = [
@@ -154,17 +168,25 @@ export default function Contact({ theme: t }) {
 
               {/* Info cards */}
               {[
-                { icon: <Mail size={22} />, label: 'Email Us', val: 'jahangeerk1998@gmail.com' },
-                { icon: <Phone size={22} />, label: 'Call Us', val: '03376062635' },
-                { icon: <FaWhatsapp size={22} />, label: 'Whatsapp', val: '03144085533' },
+                { icon: <Mail size={22} />, label: 'Email Us', val: 'jahangeerk1998@gmail.com', href: 'mailto:jahangeerk1998@gmail.com' },
+                { icon: <Phone size={22} />, label: 'Call Us', val: '03376062635', href: 'tel:+923376062635' },
+                { icon: <FaWhatsapp size={22} />, label: 'WhatsApp', val: '03144085533', href: 'https://wa.me/923144085533' },
                 { icon: <MapPin size={22} />, label: 'Office', val: 'Gulshan e Iqbal Karachi Pakistan.' },
-                { icon: <Clock size={22} />, label: 'Working Hours', val: 'Mon–Fri · 9:00 AM – 6:00 PM EST' },
-              ].map(({ icon, label, val }, i) => (
+                { icon: <Clock size={22} />, label: 'Working Hours', val: 'Mon–Fri · 9:00 AM – 6:00 PM PKT' },
+              ].map(({ icon, label, val, href }, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20, padding: '18px 20px', borderRadius: 16, background: t.bgCard, border: `1px solid ${t.border}` }}>
-                  <div style={{ width: 44, height: 44, borderRadius: 14, background: `rgba(${t.rgb},.12)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, flexShrink: 0 }}>{icon}</div>
+                  <div style={{ width: 44, height: 44, borderRadius: 14, background: `rgba(${t.rgb},.12)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, flexShrink: 0, color: t.accent }}>{icon}</div>
                   <div>
                     <div style={{ fontSize: 12, fontWeight: 600, color: t.textMuted, letterSpacing: '.05em', textTransform: 'uppercase' }}>{label}</div>
-                    <div style={{ fontSize: 15, fontWeight: 600, color: t.textHeading, marginTop: 2 }}>{val}</div>
+                    {href ? (
+                      <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
+                        style={{ fontSize: 15, fontWeight: 600, color: t.textHeading, marginTop: 2, display: 'block', textDecoration: 'none', transition: 'color .2s' }}
+                        onMouseEnter={e => e.currentTarget.style.color = t.accent}
+                        onMouseLeave={e => e.currentTarget.style.color = t.textHeading}
+                      >{val}</a>
+                    ) : (
+                      <div style={{ fontSize: 15, fontWeight: 600, color: t.textHeading, marginTop: 2 }}>{val}</div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -173,11 +195,41 @@ export default function Contact({ theme: t }) {
               <div style={{ marginTop: 28 }}>
                 <p style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: t.textMuted, marginBottom: 14 }}>Follow Us</p>
                 <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                  {SOCIAL_LINKS.map(({ icon, label }) => (
-                    <button key={label} aria-label={label} title={label} style={{ width: 42, height: 42, borderRadius: '50%', border: `1px solid ${t.border}`, background: `rgba(${t.rgb},.08)`, color: t.text, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all .2s' }}
-                      onMouseEnter={e => { e.currentTarget.style.borderColor = t.accent; e.currentTarget.style.color = t.accent; e.currentTarget.style.background = `rgba(${t.rgb},.16)` }}
-                      onMouseLeave={e => { e.currentTarget.style.borderColor = t.border; e.currentTarget.style.color = t.text; e.currentTarget.style.background = `rgba(${t.rgb},.08)` }}
-                    >{icon}</button>
+                  {SOCIAL_LINKS.map(({ icon, label, href, hoverColor, hoverBg, hoverBorder }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      title={label}
+                      style={{
+                        width: 42, height: 42, borderRadius: '50%',
+                        border: `1px solid ${t.border}`,
+                        background: `rgba(${t.rgb},.08)`,
+                        color: t.text,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        transition: 'all .25s cubic-bezier(.4,0,.2,1)',
+                        textDecoration: 'none',
+                        flexShrink: 0,
+                      }}
+                      onMouseEnter={e => {
+                        e.currentTarget.style.borderColor = hoverBorder || hoverColor;
+                        e.currentTarget.style.color = hoverColor;
+                        e.currentTarget.style.background = hoverBg;
+                        e.currentTarget.style.transform = 'translateY(-3px) scale(1.12)';
+                        e.currentTarget.style.boxShadow = `0 6px 20px ${hoverBg}`;
+                      }}
+                      onMouseLeave={e => {
+                        e.currentTarget.style.borderColor = t.border;
+                        e.currentTarget.style.color = t.text;
+                        e.currentTarget.style.background = `rgba(${t.rgb},.08)`;
+                        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                        e.currentTarget.style.boxShadow = 'none';
+                      }}
+                    >
+                      {icon}
+                    </a>
                   ))}
                 </div>
               </div>

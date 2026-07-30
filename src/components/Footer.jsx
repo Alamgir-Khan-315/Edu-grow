@@ -23,10 +23,22 @@ const COLS = {
 }
 
 const SOCIALS = [
-  { icon: <FaLinkedinIn size={15} />, label: 'LinkedIn' },
-  { icon: <FaYoutube size={15} />, label: 'YouTube' },
-  { icon: <FaFacebookF size={15} />, label: 'Facebook' },
-  { icon: <FaInstagram size={15} />, label: 'Instagram' },
+  {
+    icon: <FaLinkedinIn size={15} />,
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/edugrow-digital_marketing/?viewAsMember=true',
+    hoverColor: '#0A66C2',
+    hoverBg: 'rgba(10,102,194,.14)',
+  },
+  {
+    icon: <FaInstagram size={15} />,
+    label: 'Instagram',
+    href: 'https://www.instagram.com/edugrow_digital/?hl=en',
+    hoverColor: '#E1306C',
+    hoverBg: 'rgba(225,48,108,.14)',
+  },
+  // { icon: <FaYoutube size={15} />,   label: 'YouTube',  href: '#', hoverColor: '#FF0000', hoverBg: 'rgba(255,0,0,.12)' },   // Uncomment when ready
+  // { icon: <FaFacebookF size={15} />, label: 'Facebook', href: '#', hoverColor: '#1877F2', hoverBg: 'rgba(24,119,242,.14)' }, // Uncomment when ready
 ]
 
 export default function Footer({ theme: t }) {
@@ -49,11 +61,41 @@ export default function Footer({ theme: t }) {
               Your full-service social media &amp; events agency. We turn brands into communities and events into experiences.
             </p>
             <div style={{ display: 'flex', gap: 8 }}>
-              {SOCIALS.map(({ icon, label }) => (
-                <button key={label} aria-label={label} title={label} style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${t.border}`, background: `rgba(${t.rgb},.08)`, color: t.text, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all .2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = `rgba(${t.rgb},.22)`; e.currentTarget.style.borderColor = a; e.currentTarget.style.color = a }}
-                  onMouseLeave={e => { e.currentTarget.style.background = `rgba(${t.rgb},.08)`; e.currentTarget.style.borderColor = t.border; e.currentTarget.style.color = t.text }}
-                >{icon}</button>
+              {SOCIALS.map(({ icon, label, href, hoverColor, hoverBg }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  title={label}
+                  style={{
+                    width: 36, height: 36, borderRadius: '50%',
+                    border: `1px solid ${t.border}`,
+                    background: `rgba(${t.rgb},.08)`,
+                    color: t.text,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    transition: 'all .25s cubic-bezier(.4,0,.2,1)',
+                    textDecoration: 'none',
+                    flexShrink: 0,
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.borderColor = hoverColor;
+                    e.currentTarget.style.color = hoverColor;
+                    e.currentTarget.style.background = hoverBg;
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.12)';
+                    e.currentTarget.style.boxShadow = `0 6px 18px ${hoverBg}`;
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.borderColor = t.border;
+                    e.currentTarget.style.color = t.text;
+                    e.currentTarget.style.background = `rgba(${t.rgb},.08)`;
+                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                >
+                  {icon}
+                </a>
               ))}
             </div>
           </div>
